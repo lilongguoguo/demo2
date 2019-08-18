@@ -1,0 +1,9 @@
+/target/
+/disconf/
+.classpath
+.project
+/.myeclipse
+/.settings
+/src/main/webapp/WEB-INF/classes/
+/.idea/
+qdp-newhouse-api.iml

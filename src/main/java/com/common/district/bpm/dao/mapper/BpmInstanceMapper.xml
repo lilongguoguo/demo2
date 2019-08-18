@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.bpm.dao.BpmInstanceMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.bpm.model.BpmInstance" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="template_id" property="templateId" jdbcType="BIGINT" />
+    <result column="relation_type" property="relationType" jdbcType="INTEGER" />
+    <result column="relation_id" property="relationId" jdbcType="BIGINT" />
+    <result column="approve_status" property="approveStatus" jdbcType="INTEGER" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+    <result column="current_note_name" property="currentNoteName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, template_id, relation_type, relation_id, approve_status, create_user_id, create_user_name, 
+    create_time, del,current_note_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_bpm_instance
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_bpm_instance
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.bpm.model.BpmInstance" keyProperty="id" useGeneratedKeys="true" >
+    insert into pub_bpm_instance (id, template_id, relation_type, 
+      relation_id, approve_status, create_user_id, 
+      create_user_name, create_time, del,current_note_name
+      )
+    values (#{id,jdbcType=BIGINT}, #{templateId,jdbcType=BIGINT}, #{relationType,jdbcType=INTEGER}, 
+      #{relationId,jdbcType=BIGINT}, #{approveStatus,jdbcType=INTEGER}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{del,jdbcType=INTEGER},
+      #{currentNoteName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.bpm.model.BpmInstance" useGeneratedKeys="true" keyProperty="id">
+    insert into pub_bpm_instance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="relationType != null" >
+        relation_type,
+      </if>
+      <if test="relationId != null" >
+        relation_id,
+      </if>
+      <if test="approveStatus != null" >
+        approve_status,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+      <if test="currentNoteName != null" >
+        current_note_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=BIGINT},
+      </if>
+      <if test="relationType != null" >
+        #{relationType,jdbcType=INTEGER},
+      </if>
+      <if test="relationId != null" >
+        #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="approveStatus != null" >
+        #{approveStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="currentNoteName != null" >
+        #{currentNoteName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.bpm.model.BpmInstance" >
+    update pub_bpm_instance
+    <set >
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=BIGINT},
+      </if>
+      <if test="relationType != null" >
+        relation_type = #{relationType,jdbcType=INTEGER},
+      </if>
+      <if test="relationId != null" >
+        relation_id = #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="approveStatus != null" >
+        approve_status = #{approveStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+      <if test="currentNoteName != null" >
+        current_note_name = #{currentNoteName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.bpm.model.BpmInstance" >
+    update pub_bpm_instance
+    set template_id = #{templateId,jdbcType=BIGINT},
+      relation_type = #{relationType,jdbcType=INTEGER},
+      relation_id = #{relationId,jdbcType=BIGINT},
+      approve_status = #{approveStatus,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del = #{del,jdbcType=INTEGER},
+      current_note_name = #{currentNoteName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getInstanceByRelationId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pub_bpm_instance
+    where relation_id = #{relationId,jdbcType=BIGINT} and relation_type = #{relationType,jdbcType=INTEGER}
+    <if test="del!=null">
+      and del = #{del}
+    </if>
+  </select>
+</mapper>

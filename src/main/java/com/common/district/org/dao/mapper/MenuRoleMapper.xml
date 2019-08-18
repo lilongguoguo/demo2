@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.org.dao.MenuRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.org.model.MenuRole" >
+    <id column="mr_id" property="mrId" jdbcType="BIGINT" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="menu_code" property="menuCode" jdbcType="VARCHAR" />
+    <result column="data_range" property="dataRange" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mr_id, role_id, menu_code, data_range, status, create_user_id, create_time, update_user_id, 
+    update_time, organ_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_org_menu_role
+    where mr_id = #{mrId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_org_menu_role
+    where mr_id = #{mrId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.org.model.MenuRole" >
+    insert into pub_org_menu_role (mr_id, role_id, menu_code, 
+      data_range, status, create_user_id, 
+      create_time, update_user_id, update_time, 
+      organ_id)
+    values (#{mrId,jdbcType=BIGINT}, #{roleId,jdbcType=VARCHAR}, #{menuCode,jdbcType=VARCHAR}, 
+      #{dataRange,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{organId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.org.model.MenuRole" >
+    insert into pub_org_menu_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mrId != null" >
+        mr_id,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="menuCode != null" >
+        menu_code,
+      </if>
+      <if test="dataRange != null" >
+        data_range,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mrId != null" >
+        #{mrId,jdbcType=BIGINT},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuCode != null" >
+        #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataRange != null" >
+        #{dataRange,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.org.model.MenuRole" >
+    update pub_org_menu_role
+    <set >
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuCode != null" >
+        menu_code = #{menuCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataRange != null" >
+        data_range = #{dataRange,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mr_id = #{mrId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.org.model.MenuRole" >
+    update pub_org_menu_role
+    set role_id = #{roleId,jdbcType=VARCHAR},
+      menu_code = #{menuCode,jdbcType=VARCHAR},
+      data_range = #{dataRange,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      organ_id = #{organId,jdbcType=VARCHAR}
+    where mr_id = #{mrId,jdbcType=BIGINT}
+  </update>
+  <insert id="insertList" >
+    insert into pub_org_menu_role (mr_id, role_id, menu_code,
+      data_range, status, create_user_id,
+      create_time, update_user_id, update_time,
+      organ_id)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.mrId,jdbcType=BIGINT}, #{item.roleId,jdbcType=VARCHAR}, #{item.menuCode,jdbcType=VARCHAR},
+      #{item.dataRange,jdbcType=VARCHAR}, #{item.status,jdbcType=INTEGER}, #{item.createUserId,jdbcType=VARCHAR},
+      #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateUserId,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP},
+      #{item.organId,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <select id="selectByRoleId" resultType="java.lang.Long">
+    SELECT  menu.menu_id from  pub_org_menu_role AS menuRole
+    LEFT JOIN pub_org_menu as menu
+    ON menuRole.menu_code = menu.menu_code
+    WHERE menuRole.role_id =#{roleId,jdbcType=VARCHAR}
+    and menuRole.organ_id = #{organId,jdbcType=VARCHAR}
+    and menu.menu_level = 3
+  </select>
+  <select id="selectByDataRange" resultType="java.lang.String">
+        SELECT data_range from
+        pub_org_menu_role
+        WHERE  role_id =#{roleId,jdbcType=VARCHAR}
+        group by data_range
+  </select>
+    <delete id="deleteByRoleId">
+        DELETE  FROM  pub_org_menu_role WHERE role_id =#{roleId,jdbcType=VARCHAR}
+    </delete>
+  <update id="updateStatus">
+    UPDATE pub_org_menu_role
+    SET status = #{status,jdbcType=INTEGER} WHERE role_id =#{roleId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

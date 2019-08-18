@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.res.dao.RegionMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.res.model.Region" >
+    <id column="dict_region_id" property="dictRegionId" jdbcType="VARCHAR" />
+    <result column="dict_region_code" property="dictRegionCode" jdbcType="VARCHAR" />
+    <result column="dict_region_type" property="dictRegionType" jdbcType="INTEGER" />
+    <result column="dict_region_name" property="dictRegionName" jdbcType="VARCHAR" />
+    <result column="dict_region_full_name" property="dictRegionFullName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="tree_level" property="treeLevel" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dict_region_id, dict_region_code, dict_region_type, dict_region_name, dict_region_full_name, 
+    parent_id, tree_level, status, sort, create_user_id, create_time, update_user_id, 
+    update_time, del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_res_region
+    where dict_region_id = #{dictRegionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pub_res_region
+    where dict_region_id = #{dictRegionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.res.model.Region" >
+    insert into pub_res_region (dict_region_id, dict_region_code, dict_region_type, 
+      dict_region_name, dict_region_full_name, parent_id, 
+      tree_level, status, sort, 
+      create_user_id, create_time, update_user_id, 
+      update_time, del)
+    values (#{dictRegionId,jdbcType=VARCHAR}, #{dictRegionCode,jdbcType=VARCHAR}, #{dictRegionType,jdbcType=INTEGER}, 
+      #{dictRegionName,jdbcType=VARCHAR}, #{dictRegionFullName,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, 
+      #{treeLevel,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{del,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.res.model.Region" >
+    insert into pub_res_region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dictRegionId != null" >
+        dict_region_id,
+      </if>
+      <if test="dictRegionCode != null" >
+        dict_region_code,
+      </if>
+      <if test="dictRegionType != null" >
+        dict_region_type,
+      </if>
+      <if test="dictRegionName != null" >
+        dict_region_name,
+      </if>
+      <if test="dictRegionFullName != null" >
+        dict_region_full_name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="treeLevel != null" >
+        tree_level,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dictRegionId != null" >
+        #{dictRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="dictRegionCode != null" >
+        #{dictRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictRegionType != null" >
+        #{dictRegionType,jdbcType=INTEGER},
+      </if>
+      <if test="dictRegionName != null" >
+        #{dictRegionName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictRegionFullName != null" >
+        #{dictRegionFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="treeLevel != null" >
+        #{treeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.res.model.Region" >
+    update pub_res_region
+    <set >
+      <if test="dictRegionCode != null" >
+        dict_region_code = #{dictRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictRegionType != null" >
+        dict_region_type = #{dictRegionType,jdbcType=INTEGER},
+      </if>
+      <if test="dictRegionName != null" >
+        dict_region_name = #{dictRegionName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictRegionFullName != null" >
+        dict_region_full_name = #{dictRegionFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="treeLevel != null" >
+        tree_level = #{treeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dict_region_id = #{dictRegionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.res.model.Region" >
+    update pub_res_region
+    set dict_region_code = #{dictRegionCode,jdbcType=VARCHAR},
+      dict_region_type = #{dictRegionType,jdbcType=INTEGER},
+      dict_region_name = #{dictRegionName,jdbcType=VARCHAR},
+      dict_region_full_name = #{dictRegionFullName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=VARCHAR},
+      tree_level = #{treeLevel,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del = #{del,jdbcType=INTEGER}
+    where dict_region_id = #{dictRegionId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getProvince" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pub_res_region
+    where dict_region_type = 1
+  </select>
+
+  <select id="selectByParentId" resultMap="BaseResultMap" parameterType="string">
+    select
+    <include refid="Base_Column_List" />
+    from pub_res_region
+    where parent_id = #{parentId,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.ContractPenaltyPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.ContractPenaltyPlan" >
+    <id column="penalty_id" property="penaltyId" jdbcType="BIGINT" />
+    <result column="cont_id" property="contId" jdbcType="BIGINT" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="receipt_type" property="receiptType" jdbcType="INTEGER" />
+    <result column="penalty_amount" property="penaltyAmount" jdbcType="DECIMAL" />
+    <result column="receive_date" property="receiveDate" jdbcType="TIMESTAMP" />
+    <result column="is_approve" property="isApprove" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.common.district.ad.model.ContractPenaltyPlan" extends="BaseResultMap" >
+    <result column="penalty_msg" property="penaltyMsg" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    penalty_id, cont_id, project_id, project_name, receipt_type, penalty_amount, receive_date, 
+    is_approve, create_time, create_user_id, create_user_name, update_time, update_user_id, 
+    update_user_name, del
+  </sql>
+  <sql id="Blob_Column_List" >
+    penalty_msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pub_ad_contract_penalty_plan
+    where penalty_id = #{penaltyId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_contract_penalty_plan
+    where penalty_id = #{penaltyId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.ContractPenaltyPlan" >
+    insert into pub_ad_contract_penalty_plan (penalty_id, cont_id, project_id, 
+      project_name, receipt_type, penalty_amount, 
+      receive_date, is_approve, create_time, 
+      create_user_id, create_user_name, update_time, 
+      update_user_id, update_user_name, del, 
+      penalty_msg)
+    values (#{penaltyId,jdbcType=BIGINT}, #{contId,jdbcType=BIGINT}, #{projectId,jdbcType=VARCHAR}, 
+      #{projectName,jdbcType=VARCHAR}, #{receiptType,jdbcType=INTEGER}, #{penaltyAmount,jdbcType=DECIMAL}, 
+      #{receiveDate,jdbcType=TIMESTAMP}, #{isApprove,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateUserId,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, #{del,jdbcType=INTEGER}, 
+      #{penaltyMsg,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.ContractPenaltyPlan" >
+    insert into pub_ad_contract_penalty_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="penaltyId != null" >
+        penalty_id,
+      </if>
+      <if test="contId != null" >
+        cont_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="receiptType != null" >
+        receipt_type,
+      </if>
+      <if test="penaltyAmount != null" >
+        penalty_amount,
+      </if>
+      <if test="receiveDate != null" >
+        receive_date,
+      </if>
+      <if test="isApprove != null" >
+        is_approve,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+      <if test="penaltyMsg != null" >
+        penalty_msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="penaltyId != null" >
+        #{penaltyId,jdbcType=BIGINT},
+      </if>
+      <if test="contId != null" >
+        #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        #{receiptType,jdbcType=INTEGER},
+      </if>
+      <if test="penaltyAmount != null" >
+        #{penaltyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveDate != null" >
+        #{receiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isApprove != null" >
+        #{isApprove,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="penaltyMsg != null" >
+        #{penaltyMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.ContractPenaltyPlan" >
+    update pub_ad_contract_penalty_plan
+    <set >
+      <if test="contId != null" >
+        cont_id = #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiptType != null" >
+        receipt_type = #{receiptType,jdbcType=INTEGER},
+      </if>
+      <if test="penaltyAmount != null" >
+        penalty_amount = #{penaltyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiveDate != null" >
+        receive_date = #{receiveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isApprove != null" >
+        is_approve = #{isApprove,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+      <if test="penaltyMsg != null" >
+        penalty_msg = #{penaltyMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where penalty_id = #{penaltyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.common.district.ad.model.ContractPenaltyPlan" >
+    update pub_ad_contract_penalty_plan
+    set cont_id = #{contId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      receipt_type = #{receiptType,jdbcType=INTEGER},
+      penalty_amount = #{penaltyAmount,jdbcType=DECIMAL},
+      receive_date = #{receiveDate,jdbcType=TIMESTAMP},
+      is_approve = #{isApprove,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      del = #{del,jdbcType=INTEGER},
+      penalty_msg = #{penaltyMsg,jdbcType=LONGVARCHAR}
+    where penalty_id = #{penaltyId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.ContractPenaltyPlan" >
+    update pub_ad_contract_penalty_plan
+    set cont_id = #{contId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      receipt_type = #{receiptType,jdbcType=INTEGER},
+      penalty_amount = #{penaltyAmount,jdbcType=DECIMAL},
+      receive_date = #{receiveDate,jdbcType=TIMESTAMP},
+      is_approve = #{isApprove,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      del = #{del,jdbcType=INTEGER}
+    where penalty_id = #{penaltyId,jdbcType=BIGINT}
+  </update>
+</mapper>

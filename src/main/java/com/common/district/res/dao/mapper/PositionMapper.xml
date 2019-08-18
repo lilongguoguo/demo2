@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.res.dao.PositionMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.res.model.Position" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="position_code" property="positionCode" jdbcType="VARCHAR" />
+    <result column="first_resource_type" property="firstResourceType" jdbcType="VARCHAR" />
+    <result column="second_resource_type" property="secondResourceType" jdbcType="VARCHAR" />
+    <result column="third_resource_type" property="thirdResourceType" jdbcType="VARCHAR" />
+    <result column="health_degree" property="healthDegree" jdbcType="INTEGER" />
+    <result column="reference_price" property="referencePrice" jdbcType="DECIMAL" />
+    <result column="capacity" property="capacity" jdbcType="DECIMAL" />
+    <result column="capacity_unit_id" property="capacityUnitId" jdbcType="INTEGER" />
+    <result column="spec" property="spec" jdbcType="DECIMAL" />
+    <result column="spec_unit_id" property="specUnitId" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="part_id" property="partId" jdbcType="VARCHAR" />
+    <result column="part_name" property="partName" jdbcType="VARCHAR" />
+    <result column="building_id" property="buildingId" jdbcType="VARCHAR" />
+    <result column="building_name" property="buildingName" jdbcType="VARCHAR" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+    <result column="elevator_num" property="elevatorNum" jdbcType="VARCHAR" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="room_num" property="roomNum" jdbcType="VARCHAR" />
+    <result column="position_address" property="positionAddress" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    p.id, p.position_name, p.position_code, p.first_resource_type, p.second_resource_type, p.third_resource_type,
+    p.health_degree, p.reference_price, p.capacity, p.capacity_unit_id, p.spec, p.spec_unit_id, p.company_id,
+    p.company_name, p.area_id, p.area_name, p.project_id, p.project_name, p.part_id, p.part_name, p.building_id,
+    p.building_name, p.unit_id, p.unit_name, p.elevator_num, p.room_id, p.room_num, p.position_address,
+    p.create_time, p.update_time, p.create_user_name, p.update_user_name, p.create_user_id, p.update_user_id,
+    p.organ_id, p.del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from pub_res_position p
+    where p.id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_res_position
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.res.model.Position" >
+    insert into pub_res_position (id, position_name, position_code,
+    first_resource_type,  second_resource_type, third_resource_type,
+    health_degree, reference_price, capacity,
+    capacity_unit_id, spec, spec_unit_id,
+    company_id, company_name, area_id,
+    area_name, project_id, project_name,
+    part_id, part_name, building_id,
+    building_name, unit_id, unit_name,
+    elevator_num, room_id, room_num,
+    position_address, create_time, update_time,
+    create_user_name, update_user_name, create_user_id,
+    update_user_id, organ_id, del
+    )
+    values (#{id,jdbcType=BIGINT}, #{positionName,jdbcType=VARCHAR}, #{positionCode,jdbcType=VARCHAR},
+    #{firstResourceType,jdbcType=VARCHAR}, #{secondResourceType,jdbcType=VARCHAR},
+    #{secondResourceTypeName,jdbcType=VARCHAR},#{thirdResourceType,jdbcType=VARCHAR},
+    #{healthDegree,jdbcType=INTEGER}, #{referencePrice,jdbcType=DECIMAL}, #{capacity,jdbcType=DECIMAL},
+    #{capacityUnitId,jdbcType=INTEGER}, #{spec,jdbcType=DECIMAL}, #{specUnitId,jdbcType=INTEGER},
+    #{companyId,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{areaId,jdbcType=VARCHAR},
+    #{areaName,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR},
+    #{partId,jdbcType=VARCHAR}, #{partName,jdbcType=VARCHAR}, #{buildingId,jdbcType=VARCHAR},
+    #{buildingName,jdbcType=VARCHAR}, #{unitId,jdbcType=VARCHAR}, #{unitName,jdbcType=VARCHAR},
+    #{elevatorNum,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, #{roomNum,jdbcType=VARCHAR},
+    #{positionAddress,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+    #{createUserName,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR},
+    #{updateUserId,jdbcType=VARCHAR}, #{organId,jdbcType=VARCHAR}, #{del,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.res.model.Position" >
+    insert into pub_res_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="positionName != null" >
+        position_name,
+      </if>
+      <if test="positionCode != null" >
+        position_code,
+      </if>
+      <if test="firstResourceType != null" >
+        first_resource_type,
+      </if>
+      <if test="secondResourceType != null" >
+        second_resource_type,
+      </if>
+      <if test="thirdResourceType != null" >
+        third_resource_type,
+      </if>
+      <if test="healthDegree != null" >
+        health_degree,
+      </if>
+      <if test="referencePrice != null" >
+        reference_price,
+      </if>
+      <if test="capacity != null" >
+        capacity,
+      </if>
+      <if test="capacityUnitId != null" >
+        capacity_unit_id,
+      </if>
+      <if test="spec != null" >
+        spec,
+      </if>
+      <if test="specUnitId != null" >
+        spec_unit_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="partId != null" >
+        part_id,
+      </if>
+      <if test="partName != null" >
+        part_name,
+      </if>
+      <if test="buildingId != null" >
+        building_id,
+      </if>
+      <if test="buildingName != null" >
+        building_name,
+      </if>
+      <if test="unitId != null" >
+        unit_id,
+      </if>
+      <if test="unitName != null" >
+        unit_name,
+      </if>
+      <if test="elevatorNum != null" >
+        elevator_num,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="roomNum != null" >
+        room_num,
+      </if>
+      <if test="positionAddress != null" >
+        position_address,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionCode != null" >
+        #{positionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstResourceType != null" >
+        #{firstResourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="secondResourceType != null" >
+        #{secondResourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdResourceType != null" >
+        #{thirdResourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="healthDegree != null" >
+        #{healthDegree,jdbcType=INTEGER},
+      </if>
+      <if test="referencePrice != null" >
+        #{referencePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="capacity != null" >
+        #{capacity,jdbcType=DECIMAL},
+      </if>
+      <if test="capacityUnitId != null" >
+        #{capacityUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="spec != null" >
+        #{spec,jdbcType=DECIMAL},
+      </if>
+      <if test="specUnitId != null" >
+        #{specUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="partId != null" >
+        #{partId,jdbcType=VARCHAR},
+      </if>
+      <if test="partName != null" >
+        #{partName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingName != null" >
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null" >
+        #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="elevatorNum != null" >
+        #{elevatorNum,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNum != null" >
+        #{roomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="positionAddress != null" >
+        #{positionAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.res.model.Position" >
+    update pub_res_position
+    <set >
+      <if test="positionName != null" >
+        position_name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionCode != null" >
+        position_code = #{positionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="firstResourceType != null" >
+        first_resource_type = #{firstResourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="secondResourceType != null" >
+        second_resource_type = #{secondResourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="thirdResourceType != null" >
+        third_resource_type = #{thirdResourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="healthDegree != null" >
+        health_degree = #{healthDegree,jdbcType=INTEGER},
+      </if>
+      <if test="referencePrice != null" >
+        reference_price = #{referencePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="capacity != null" >
+        capacity = #{capacity,jdbcType=DECIMAL},
+      </if>
+      <if test="capacityUnitId != null" >
+        capacity_unit_id = #{capacityUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="spec != null" >
+        spec = #{spec,jdbcType=DECIMAL},
+      </if>
+      <if test="specUnitId != null" >
+        spec_unit_id = #{specUnitId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="partId != null" >
+        part_id = #{partId,jdbcType=VARCHAR},
+      </if>
+      <if test="partName != null" >
+        part_name = #{partName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null" >
+        building_id = #{buildingId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingName != null" >
+        building_name = #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null" >
+        unit_id = #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="elevatorNum != null" >
+        elevator_num = #{elevatorNum,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomNum != null" >
+        room_num = #{roomNum,jdbcType=VARCHAR},
+      </if>
+      <if test="positionAddress != null" >
+        position_address = #{positionAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.res.model.Position" >
+    update pub_res_position
+    set position_name = #{positionName,jdbcType=VARCHAR},
+      position_code = #{positionCode,jdbcType=VARCHAR},
+      first_resource_type = #{firstResourceType,jdbcType=VARCHAR},
+      second_resource_type = #{secondResourceType,jdbcType=VARCHAR},
+      third_resource_type = #{thirdResourceType,jdbcType=VARCHAR},
+      health_degree = #{healthDegree,jdbcType=INTEGER},
+      reference_price = #{referencePrice,jdbcType=DECIMAL},
+      capacity = #{capacity,jdbcType=DECIMAL},
+      capacity_unit_id = #{capacityUnitId,jdbcType=INTEGER},
+      spec = #{spec,jdbcType=DECIMAL},
+      spec_unit_id = #{specUnitId,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      part_id = #{partId,jdbcType=VARCHAR},
+      part_name = #{partName,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=VARCHAR},
+      building_name = #{buildingName,jdbcType=VARCHAR},
+      unit_id = #{unitId,jdbcType=VARCHAR},
+      unit_name = #{unitName,jdbcType=VARCHAR},
+      elevator_num = #{elevatorNum,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      room_num = #{roomNum,jdbcType=VARCHAR},
+      position_address = #{positionAddress,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      organ_id = #{organId,jdbcType=VARCHAR},
+      del = #{del,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="deletePosition">
+      update pub_res_position set del = 1,update_user_id=#{userId,jdbcType=VARCHAR},
+      update_user_name=#{userName,jdbcType=VARCHAR},update_time= sysdate() where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <sql id="BaseWhereExt">
+    <if test="search.positionName != null and search.positionName !=''">
+      and p.position_name like
+      concat('%',#{search.positionName},'%')
+    </if>
+    <if test="search.positionCode != null and search.positionCode !=''">
+      and p.position_code like
+      concat('%',#{search.positionCode},'%')
+    </if>
+    <if test="search.firstResourceType != null and search.firstResourceType != ''">
+      and p.first_resource_type =#{search.firstResourceType}
+    </if>
+    <if test="search.secondResourceType != null and search.secondResourceType != ''">
+      and p.second_resource_type=#{search.secondResourceType}
+    </if>
+    <if test="search.thirdResourceType != null and search.thirdResourceType != ''">
+      and p.third_resource_type_id=#{search.thirdResourceType}
+    </if>
+    <if test="search.companyId != null and search.companyId != ''">
+      and p.company_id =#{search.companyId}
+    </if>
+    <if test="search.areaId != null and search.areaId != ''">
+      and p.area_id =#{search.areaId}
+    </if>
+    <if test="search.projectId != null and search.projectId != ''">
+      and p.project_id =#{search.projectId}
+    </if>
+    <if test="search.healthDegree != null ">
+      and p.health_degree =#{search.healthDegree}
+    </if>
+    <if test="search.partName != null and search.partName !='' ">
+      and p.part_name like
+      concat('%',#{search.partName},'%')
+    </if>
+    <if test="search.buildingName != null and search.buildingName !='' ">
+      and p.building_name like
+      concat('%',#{search.buildingName},'%')
+    </if>
+    <if test="search.unitName != null and search.unitName !='' ">
+      and p.unit_name like
+      concat('%',#{search.unitName},'%')
+    </if>
+    <if test="search.elevatorNum != null and search.elevatorNum !='' ">
+      and p.elevator_num like
+      concat('%',#{search.elevatorNum},'%')
+    </if>
+    <if test="search.positionAddress != null and search.positionAddress !='' ">
+      and p.position_address like
+      concat('%',#{search.positionAddress},'%')
+    </if>
+    <if test="search.organId != null and search.organId !='' ">
+      and p.organ_id =#{search.organId}
+    </if>
+  </sql>
+  <resultMap id="VOResultMap" type="com.common.district.res.vo.PositionVO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="position_code" property="positionCode" jdbcType="VARCHAR" />
+    <result column="first_resource_type" property="firstResourceType" jdbcType="VARCHAR" />
+    <result column="first_resource_type_name" property="firstResourceTypeName" jdbcType="VARCHAR" />
+    <result column="second_resource_type" property="secondResourceType" jdbcType="VARCHAR" />
+    <result column="second_resource_type_name" property="secondResourceTypeName" jdbcType="VARCHAR" />
+    <result column="third_resource_type" property="thirdResourceType" jdbcType="VARCHAR" />
+    <result column="third_resource_type_name" property="thirdResourceTypeName" jdbcType="VARCHAR" />
+    <result column="health_degree" property="healthDegree" jdbcType="INTEGER" />
+    <result column="health_degree_name" property="healthDegreeName" jdbcType="VARCHAR" />
+    <result column="reference_price" property="referencePrice" jdbcType="DECIMAL" />
+    <result column="capacity" property="capacity" jdbcType="DECIMAL" />
+    <result column="capacity_unit_id" property="capacityUnitId" jdbcType="INTEGER" />
+    <result column="spec" property="spec" jdbcType="DECIMAL" />
+    <result column="spec_unit_id" property="specUnitId" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="part_id" property="partId" jdbcType="VARCHAR" />
+    <result column="part_name" property="partName" jdbcType="VARCHAR" />
+    <result column="building_id" property="buildingId" jdbcType="VARCHAR" />
+    <result column="building_name" property="buildingName" jdbcType="VARCHAR" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+    <result column="elevator_num" property="elevatorNum" jdbcType="VARCHAR" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="room_num" property="roomNum" jdbcType="VARCHAR" />
+    <result column="position_address" property="positionAddress" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectPageList" resultMap="VOResultMap">
+    select t1.resource_name As 'first_resource_type_name' ,t2.resource_name AS 'second_resource_type_name',
+            dt.dicts_name AS 'health_degree_name',
+    <include refid="Base_Column_List"></include>
+    from pub_res_position p
+    left join pub_res_resource_type t1 on p.first_resource_type = t1.id
+    left join pub_res_resource_type t2 on p.second_resource_type = t2.id
+    left join pub_res_dicts dt on p.health_degree = dt.dicts_code and dt.dicts_type= 'DWJKD' and dt.del = 0
+    <if test="search.organId != null and search.organId !='' ">
+      and dt.organ_id =#{search.organId}
+    </if>
+    where 1=1
+    <include refid="BaseWhereExt"></include>
+    and p.del = 0
+    order by p.id desc
+  </select>
+
+  <select id="getPosition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from pub_res_position p
+    where 1=1
+    <if test="search.id != null">
+      and p.id !=#{search.id}
+    </if>
+    <if test="search.positionName != null and search.positionName !=''">
+      and p.position_name =#{search.positionName}
+    </if>
+    <if test="search.firstResourceType != null and search.firstResourceType != ''">
+      and p.first_resource_type =#{search.firstResourceType}
+    </if>
+    <if test="search.secondResourceType != null and search.secondResourceType != ''">
+      and p.second_resource_type=#{search.secondResourceType}
+    </if>
+    <if test="search.thirdResourceType != null and search.thirdResourceType != ''">
+      and p.second_resource_type=#{search.thirdResourceType}
+    </if>
+    <if test="search.companyId != null and search.companyId != ''">
+      and p.company_id =#{search.companyId}
+    </if>
+    <if test="search.areaId != null and search.areaId != ''">
+      and p.area_id =#{search.areaId}
+    </if>
+    <if test="search.projectId != null and search.projectId != ''">
+      and p.project_id =#{search.projectId}
+    </if>
+    <if test="search.healthDegree != null ">
+      and p.health_degree =#{search.healthDegree}
+    </if>
+    <if test="search.partName != null and search.partName !='' ">
+      and p.part_name = #{search.partName}
+    </if>
+    <if test="search.buildingName != null and search.buildingName !='' ">
+      and p.building_name =#{search.buildingName}
+    </if>
+    <if test="search.unitName != null and search.unitName !='' ">
+      and p.unit_name =#{search.unitName}
+    </if>
+    <if test="search.elevatorNum != null and search.elevatorNum !='' ">
+      and p.elevator_num =#{search.elevatorNum}
+    </if>
+    <if test="search.positionAddress != null and search.positionAddress !='' ">
+      and p.position_address =#{search.positionAddress}
+    </if>
+    <if test="search.organId != null and search.organId !='' ">
+      and p.organ_id =#{search.organId}
+    </if>
+    and p.del = 0
+    order by p.id desc
+  </select>
+
+  <select id="getCountByPositionId" resultType="java.lang.Integer">
+    select count(0) from pub_ad_contract_detail acd
+    left join pub_ad_contract_detail_point acdp on acd.cont_detail_id=acdp.cont_detail_id
+    where acdp.position_id =#{positionId} and acd.status != 1 and acd.del=0
+  </select>
+
+  <resultMap id="ExportResultMap" type="com.common.district.res.vo.PositionExportVO" >
+    <result column="position_name" property="positionName" jdbcType="VARCHAR" />
+    <result column="position_code" property="positionCode" jdbcType="VARCHAR" />
+    <result column="first_resource_type_name" property="firstResourceTypeName" jdbcType="VARCHAR" />
+    <result column="second_resource_type_name" property="secondResourceTypeName" jdbcType="VARCHAR" />
+    <result column="third_resource_type_name" property="thirdResourceTypeName" jdbcType="VARCHAR" />
+    <result column="health_degree_name" property="healthDegreeName" jdbcType="VARCHAR" />
+    <result column="reference_price" property="referencePrice" jdbcType="DECIMAL" />
+    <result column="capacity" property="capacity" jdbcType="DECIMAL" />
+    <result column="capacity_unit_id" property="capacityUnitId" jdbcType="INTEGER" />
+    <result column="spec" property="spec" jdbcType="DECIMAL" />
+    <result column="spec_unit_id" property="specUnitId" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="part_name" property="partName" jdbcType="VARCHAR" />
+    <result column="building_name" property="buildingName" jdbcType="VARCHAR" />
+    <result column="unit_name" property="unitName" jdbcType="VARCHAR" />
+    <result column="elevator_num" property="elevatorNum" jdbcType="VARCHAR" />
+    <result column="room_num" property="roomNum" jdbcType="VARCHAR" />
+    <result column="position_address" property="positionAddress" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="UnitMap" type="com.common.district.res.vo.PositionUnitVO" >
+    <result column="position_code" property="positionCode" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <select id="selectPositionList" resultMap="ExportResultMap">
+    select t1.resource_name As 'first_resource_type_name' ,t2.resource_name AS 'second_resource_type_name',
+            dt.dicts_name AS 'health_degree_name',
+    <include refid="Base_Column_List"></include>
+    from pub_res_position p
+    left join pub_res_resource_type t1 on p.first_resource_type = t1.id
+    left join pub_res_resource_type t2 on p.second_resource_type = t2.id
+    left join pub_res_dicts dt on p.health_degree = dt.dicts_code and dt.dicts_type= 'DWJKD' and dt.del = 0
+    <if test="search.organId != null and search.organId !='' ">
+      and dt.organ_id =#{search.organId}
+    </if>
+    where 1=1
+    <include refid="BaseWhereExt"></include>
+    and p.del = 0
+    order by p.id desc
+  </select>
+
+  <select id="selectByNameAndOrganId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pub_res_position p
+    where p.position_code = #{positionCode,jdbcType=VARCHAR}
+    AND organ_id = #{organId,jdbcType=VARCHAR}
+    AND del = 0
+  </select>
+
+  <insert id="insertPositionList" parameterType="com.common.district.res.model.Position">
+    insert into pub_res_position (id, position_name, position_code,
+    first_resource_type,  second_resource_type, third_resource_type,
+    health_degree, reference_price, capacity,
+    capacity_unit_id, spec, spec_unit_id,
+    company_id, company_name, area_id,
+    area_name, project_id, project_name,
+    part_id, part_name, building_id,
+    building_name, unit_id, unit_name,
+    elevator_num, room_id, room_num,
+    position_address, create_time, update_time,
+    create_user_name, update_user_name, create_user_id,
+    update_user_id, organ_id, del
+    )
+    VALUES
+    <foreach collection="list" index="index" item="record" separator=",">
+      (
+      #{record.id,jdbcType=BIGINT},
+      #{record.positionName,jdbcType=VARCHAR},
+      #{record.positionCode,jdbcType=VARCHAR},
+      #{record.firstResourceType,jdbcType=VARCHAR},
+      #{record.secondResourceType,jdbcType=VARCHAR},
+      #{record.secondResourceTypeName,jdbcType=VARCHAR},#{thirdResourceType,jdbcType=VARCHAR},
+      #{record.healthDegree,jdbcType=INTEGER},
+      #{record.referencePrice,jdbcType=DECIMAL},
+      #{record.capacity,jdbcType=DECIMAL},
+      #{record.capacityUnitId,jdbcType=INTEGER},
+      #{record.spec,jdbcType=DECIMAL},
+      #{record.specUnitId,jdbcType=INTEGER},
+      #{record.companyId,jdbcType=VARCHAR},
+      #{record.companyName,jdbcType=VARCHAR},
+      #{record.areaId,jdbcType=VARCHAR},
+      #{record.areaName,jdbcType=VARCHAR},
+      #{record.projectId,jdbcType=VARCHAR},
+      #{record.projectName,jdbcType=VARCHAR},
+      #{record.partId,jdbcType=VARCHAR},
+      #{record.partName,jdbcType=VARCHAR},
+      #{record.buildingId,jdbcType=VARCHAR},
+      #{record.buildingName,jdbcType=VARCHAR},
+      #{record.unitId,jdbcType=VARCHAR},
+      #{record.unitName,jdbcType=VARCHAR},
+      #{record.elevatorNum,jdbcType=VARCHAR},
+      #{record.roomId,jdbcType=VARCHAR},
+      #{record.roomNum,jdbcType=VARCHAR},
+      #{record.positionAddress,jdbcType=VARCHAR},
+      #{record.createTime,jdbcType=TIMESTAMP},
+      #{record.updateTime,jdbcType=TIMESTAMP},
+      #{record.createUserName,jdbcType=VARCHAR},
+      #{record.updateUserName,jdbcType=VARCHAR},
+      #{record.createUserId,jdbcType=VARCHAR},
+      #{record.updateUserId,jdbcType=VARCHAR},
+      #{record.organId,jdbcType=VARCHAR},
+      #{record.del,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
+  <select id="getFreePositionList" resultMap="VOResultMap">
+    select t1.resource_name As 'first_resource_type_name' ,t2.resource_name AS 'second_resource_type_name',
+           dt.dicts_name AS 'health_degree_name',
+    <include refid="Base_Column_List"></include>
+    from pub_res_position p
+    left join pub_res_resource_type t1 on p.first_resource_type = t1.id
+    left join pub_res_resource_type t2 on p.second_resource_type = t2.id
+    left join pub_res_dicts dt on p.health_degree = dt.dicts_code and dt.dicts_type= 'DWJKD' and dt.del = 0
+      <if test="search.organId != null and search.organId !='' ">
+        and dt.organ_id =#{search.organId}
+      </if>
+    where 1=1
+    <if test="search.positionName != null and search.positionName !=''">
+      and p.position_name like
+      concat('%',#{search.positionName},'%')
+    </if>
+    <if test="search.positionCode != null and search.positionCode !=''">
+      and p.position_code like
+      concat('%',#{search.positionCode},'%')
+    </if>
+    <if test="search.firstResourceType != null and search.firstResourceType != ''">
+      and p.first_resource_type =#{search.firstResourceType}
+    </if>
+    <if test="search.secondResourceType != null and search.secondResourceType != ''">
+      and p.second_resource_type=#{search.secondResourceType}
+    </if>
+    <if test="search.companyId != null and search.companyId != ''">
+      and p.company_id =#{search.companyId}
+    </if>
+    <if test="search.areaId != null and search.areaId != ''">
+      and p.area_id =#{search.areaId}
+    </if>
+    <if test="search.projectId != null and search.projectId != ''">
+      and p.project_id =#{search.projectId}
+    </if>
+    <if test="search.partName != null and search.partName !='' ">
+      and p.part_name like
+      concat('%',#{search.partName},'%')
+    </if>
+    <if test="search.buildingName != null and search.buildingName !='' ">
+      and p.building_name like
+      concat('%',#{search.buildingName},'%')
+    </if>
+    <if test="search.unitName != null and search.unitName !='' ">
+      and p.unit_name like
+      concat('%',#{search.unitName},'%')
+    </if>
+    <if test="search.elevatorNum != null and search.elevatorNum !='' ">
+      and p.elevator_num like
+      concat('%',#{search.elevatorNum},'%')
+    </if>
+    <if test="search.positionAddress != null and search.positionAddress !='' ">
+      and p.position_address like
+      concat('%',#{search.positionAddress},'%')
+    </if>
+    <if test="search.organId != null and search.organId !='' ">
+      and p.organ_id =#{search.organId}
+    </if>
+    <if test="search.positionIds != null and search.positionIds.size() > 0">
+      and p.id in
+      <foreach collection="search.positionIds" index="index" item="item"
+               open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="search.startTime != null and search.endTime != null">
+      and p.id not in (
+          select rp.id
+              from pub_res_position rp
+              inner join pub_ad_contract_detail_point acdp on rp.id = acdp.position_id
+              inner join pub_ad_contract_detail acd on acdp.cont_detail_id =acd.cont_detail_id AND acd.del = 0
+              inner join pub_ad_contract ac ON ac.cont_id = acd.cont_id AND ac.del = 0
+              where rp.del = 0 AND acd.status !=1
+                AND ( (acd.detail_start_time &gt;= #{search.startTime} AND acd.detail_start_time &lt;= #{search.endTime})
+                    OR (acd.detail_start_time &lt;= #{search.startTime} AND acd.detail_end_time &gt;= #{search.endTime})
+                    OR (acd.detail_end_time &gt;= #{search.startTime} AND acd.detail_end_time &lt;= #{search.endTime})
+              )
+              <if test="search.contId != null and search.contId.size()>0">
+                and rpp.contract_id not in
+                <foreach collection="search.contId" index="index" item="item" open="("
+                         separator="," close=")">
+                  #{item}
+                </foreach>
+              </if>
+              group by rp.id
+        )
+      </if>
+    and p.del = 0 order by p.id desc
+  </select>
+
+  <select id="selectPositionCodes" resultMap="UnitMap">
+    select positions.position_code,detail.status
+	from
+      pub_res_position positions
+        left join pub_ad_contract_detail_point point on positions.id = point.position_id
+        left join pub_ad_contract_detail detail on point.cont_detail_id = detail.cont_detail_id
+    where
+	  positions.del = 0
+	  and detail.del=0
+	  <if test="status != 0">
+        <if test="status == 1">
+          and detail.status in (2,3,4)
+        </if>
+        <if test="status == 2">
+          and detail.status = 1
+        </if>
+        <if test="status == 3">
+          and detail.status = 4
+        </if>
+        <if test="status == 4">
+          and detail.status = 3
+        </if>
+      </if>
+      <if test="resourcesId != null and resourcesId != ''">
+        and positions.first_resource_type = #{resourcesId,jdbcType=VARCHAR}
+      </if>
+      <if test="locationType == 2">
+        and positions.building_id = #{locationId,jdbcType=VARCHAR}
+      </if>
+      <if test="locationType == 3">
+        and positions.unit_id = #{locationId,jdbcType=VARCHAR}
+      </if>
+      <if test="locationType == 4">
+        and positions.room_id = #{locationId,jdbcType=VARCHAR}
+      </if>
+      <if test="locationType == 5">
+        and positions.elevator_num = #{locationId,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <select id="selectByPositionCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from pub_res_position p
+    where p.position_code = #{positionCode,jdbcType=VARCHAR}
+    AND p.del = 0
+  </select>
+
+  <select id="selectContIdByprojectId" resultType="long" parameterType="java.lang.String" >
+    select DISTINCT contract.cont_id from
+      pub_ad_contract contract
+      left join pub_ad_contract_detail_point point on contract.cont_id = point.cont_id
+      left join pub_res_position positions on point.position_id = positions.id
+	  where positions.project_id = #{projectId,jdbcType=VARCHAR}
+		and positions.del = 0
+  </select>
+
+  <select id="getPositionCountByProjectId" resultType="int">
+    select count(id)
+    from pub_res_position
+    where del = 0
+    AND project_id = #{projectId,jdbcType=VARCHAR}
+    AND organ_id = #{organId,jdbcType=VARCHAR}
+  </select>
+</mapper>

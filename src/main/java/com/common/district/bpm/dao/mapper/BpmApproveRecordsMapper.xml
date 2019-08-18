@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.bpm.dao.BpmApproveRecordsMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.bpm.model.BpmApproveRecords" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="instance_id" property="instanceId" jdbcType="BIGINT" />
+    <result column="approve_user_name" property="approveUserName" jdbcType="VARCHAR" />
+    <result column="approve_user_id" property="approveUserId" jdbcType="VARCHAR" />
+    <result column="note_id" property="noteId" jdbcType="VARCHAR" />
+    <result column="note_name" property="noteName" jdbcType="VARCHAR" />
+    <result column="approve_content" property="approveContent" jdbcType="VARCHAR" />
+    <result column="approve_action" property="approveAction" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, instance_id, approve_user_name, approve_user_id, note_id, note_name, approve_content, 
+    approve_action,create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_bpm_approve_records
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_bpm_approve_records
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.bpm.model.BpmApproveRecords" >
+    insert into pub_bpm_approve_records (id, instance_id, approve_user_name, 
+      approve_user_id, note_id, note_name, 
+      approve_content, approve_action,create_time)
+    values (#{id,jdbcType=BIGINT}, #{instanceId,jdbcType=BIGINT}, #{approveUserName,jdbcType=VARCHAR}, 
+      #{approveUserId,jdbcType=VARCHAR}, #{noteId,jdbcType=VARCHAR}, #{noteName,jdbcType=VARCHAR},
+      #{approveContent,jdbcType=VARCHAR}, #{approveAction,jdbcType=VARCHAR},#{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.bpm.model.BpmApproveRecords" >
+    insert into pub_bpm_approve_records
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="instanceId != null" >
+        instance_id,
+      </if>
+      <if test="approveUserName != null" >
+        approve_user_name,
+      </if>
+      <if test="approveUserId != null" >
+        approve_user_id,
+      </if>
+      <if test="noteId != null" >
+        note_id,
+      </if>
+      <if test="noteName != null" >
+        note_name,
+      </if>
+      <if test="approveContent != null" >
+        approve_content,
+      </if>
+      <if test="approveAction != null" >
+        approve_action,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="instanceId != null" >
+        #{instanceId,jdbcType=BIGINT},
+      </if>
+      <if test="approveUserName != null" >
+        #{approveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveUserId != null" >
+        #{approveUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="noteId != null" >
+        #{noteId,jdbcType=VARCHAR},
+      </if>
+      <if test="noteName != null" >
+        #{noteName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveContent != null" >
+        #{approveContent,jdbcType=VARCHAR},
+      </if>
+      <if test="approveAction != null" >
+        #{approveAction,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime!=null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.bpm.model.BpmApproveRecords" >
+    update pub_bpm_approve_records
+    <set >
+      <if test="instanceId != null" >
+        instance_id = #{instanceId,jdbcType=BIGINT},
+      </if>
+      <if test="approveUserName != null" >
+        approve_user_name = #{approveUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveUserId != null" >
+        approve_user_id = #{approveUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="noteId != null" >
+        note_id = #{noteId,jdbcType=VARCHAR},
+      </if>
+      <if test="noteName != null" >
+        note_name = #{noteName,jdbcType=VARCHAR},
+      </if>
+      <if test="approveContent != null" >
+        approve_content = #{approveContent,jdbcType=VARCHAR},
+      </if>
+      <if test="approveAction != null" >
+        approve_action = #{approveAction,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime!=null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.bpm.model.BpmApproveRecords" >
+    update pub_bpm_approve_records
+    set instance_id = #{instanceId,jdbcType=BIGINT},
+      approve_user_name = #{approveUserName,jdbcType=VARCHAR},
+      approve_user_id = #{approveUserId,jdbcType=VARCHAR},
+      note_id = #{noteId,jdbcType=VARCHAR},
+      note_name = #{noteName,jdbcType=VARCHAR},
+      approve_content = #{approveContent,jdbcType=VARCHAR},
+      approve_action = #{approveAction,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectRecordList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pub_bpm_approve_records
+    where instance_id in
+    <foreach collection="instanceIds" separator="," open="(" close=")" item="instanceId">
+      #{instanceId}
+    </foreach>
+    order by id
+  </select>
+</mapper>

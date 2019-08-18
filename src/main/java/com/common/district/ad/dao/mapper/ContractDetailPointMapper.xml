@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.ContractDetailPointMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.ContractDetailPoint" >
+    <id column="cont_detail_point_id" property="contDetailPointId" jdbcType="BIGINT" />
+    <result column="cont_id" property="contId" jdbcType="BIGINT" />
+    <result column="cont_detail_id" property="contDetailId" jdbcType="BIGINT" />
+    <result column="position_id" property="positionId" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cont_detail_point_id, cont_id, cont_detail_id, position_id, create_date, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_ad_contract_detail_point
+    where cont_detail_point_id = #{contDetailPointId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_contract_detail_point
+    where cont_detail_point_id = #{contDetailPointId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.ContractDetailPoint" >
+    insert into pub_ad_contract_detail_point (cont_detail_point_id, cont_id, cont_detail_id, 
+      position_id, create_date, update_time
+      )
+    values (#{contDetailPointId,jdbcType=BIGINT}, #{contId,jdbcType=BIGINT}, #{contDetailId,jdbcType=BIGINT}, 
+      #{positionId,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.ContractDetailPoint" >
+    insert into pub_ad_contract_detail_point
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contDetailPointId != null" >
+        cont_detail_point_id,
+      </if>
+      <if test="contId != null" >
+        cont_id,
+      </if>
+      <if test="contDetailId != null" >
+        cont_detail_id,
+      </if>
+      <if test="positionId != null" >
+        position_id,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contDetailPointId != null" >
+        #{contDetailPointId,jdbcType=BIGINT},
+      </if>
+      <if test="contId != null" >
+        #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="contDetailId != null" >
+        #{contDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="positionId != null" >
+        #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.ContractDetailPoint" >
+    update pub_ad_contract_detail_point
+    <set >
+      <if test="contId != null" >
+        cont_id = #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="contDetailId != null" >
+        cont_detail_id = #{contDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="positionId != null" >
+        position_id = #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where cont_detail_point_id = #{contDetailPointId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.ContractDetailPoint" >
+    update pub_ad_contract_detail_point
+    set cont_id = #{contId,jdbcType=BIGINT},
+      cont_detail_id = #{contDetailId,jdbcType=BIGINT},
+      position_id = #{positionId,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where cont_detail_point_id = #{contDetailPointId,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insertDetailPoint">
+    insert into pub_ad_contract_detail_point (cont_id, cont_detail_id,position_id)
+    values
+    <foreach collection="lists" item="list" separator=",">
+    (#{list.contId,jdbcType=BIGINT}, #{list.contDetailId,jdbcType=BIGINT},#{list.positionId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+
+  <select id="contractDetailPointByContId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from pub_ad_contract_detail_point
+    where cont_id = #{contId}
+  </select>
+</mapper>

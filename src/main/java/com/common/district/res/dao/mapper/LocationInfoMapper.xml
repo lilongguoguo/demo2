@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.res.dao.LocationInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.res.model.LocationInfo" >
+    <id column="location_id" property="locationId" jdbcType="VARCHAR" />
+    <result column="location_name" property="locationName" jdbcType="VARCHAR" />
+    <result column="location_type" property="locationType" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+
+  <resultMap id="ChildResultMap" type="com.common.district.res.vo.LocationInfoVo" >
+    <id column="location_id" property="locationId" jdbcType="VARCHAR" />
+    <result column="location_name" property="locationName" jdbcType="VARCHAR" />
+    <result column="location_type" property="locationType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    location_id, location_name, location_type, parent_id, project_id, organ_id, create_user_id, 
+    create_time, update_user_id, update_time, del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_res_location_info
+    where location_id = #{locationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pub_res_location_info
+    where location_id = #{locationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.res.model.LocationInfo" >
+    insert into pub_res_location_info (location_id, location_name, location_type, 
+      parent_id, project_id, organ_id, 
+      create_user_id, create_time, update_user_id, 
+      update_time, del)
+    values (#{locationId,jdbcType=VARCHAR}, #{locationName,jdbcType=VARCHAR}, #{locationType,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{organId,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{del,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.res.model.LocationInfo" >
+    insert into pub_res_location_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="locationId != null" >
+        location_id,
+      </if>
+      <if test="locationName != null" >
+        location_name,
+      </if>
+      <if test="locationType != null" >
+        location_type,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="locationId != null" >
+        #{locationId,jdbcType=VARCHAR},
+      </if>
+      <if test="locationName != null" >
+        #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationType != null" >
+        #{locationType,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.res.model.LocationInfo" >
+    update pub_res_location_info
+    <set >
+      <if test="locationName != null" >
+        location_name = #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationType != null" >
+        location_type = #{locationType,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </set>
+    where location_id = #{locationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.res.model.LocationInfo" >
+    update pub_res_location_info
+    set location_name = #{locationName,jdbcType=VARCHAR},
+      location_type = #{locationType,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      organ_id = #{organId,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del = #{del,jdbcType=INTEGER}
+    where location_id = #{locationId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByNameAndOrganId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pub_res_location_info
+    where location_name = #{locationName,jdbcType=VARCHAR}
+    AND organ_id = #{organId,jdbcType=VARCHAR}
+    AND project_id = #{projectId,jdbcType=VARCHAR}
+    AND location_type = #{type,jdbcType=INTEGER}
+    AND del = 0
+  </select>
+
+  <select id="selectByParentId" resultMap="ChildResultMap" parameterType="STRING">
+    select location_id,location_name,location_type
+    from pub_res_location_info
+    where
+      del = 0
+      AND parent_id = #{parentId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByProjectId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pub_res_location_info
+    where del = 0
+    AND project_id = #{projectId,jdbcType=VARCHAR}
+    AND organ_id = #{organId,jdbcType=VARCHAR}
+  </select>
+</mapper>

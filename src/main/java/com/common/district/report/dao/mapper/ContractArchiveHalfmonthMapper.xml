@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.report.dao.ContractArchiveHalfmonthMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.report.model.ContractArchiveHalfmonth" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="self_company_id" property="selfCompanyId" jdbcType="VARCHAR" />
+    <result column="self_company_name" property="selfCompanyName" jdbcType="VARCHAR" />
+    <result column="dept_id" property="deptId" jdbcType="VARCHAR" />
+    <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+    <result column="archive_num" property="archiveNum" jdbcType="INTEGER" />
+    <result column="last_archive_num" property="lastArchiveNum" jdbcType="INTEGER" />
+    <result column="around_growth_num" property="aroundGrowthNum" jdbcType="INTEGER" />
+    <result column="around_growth_rate" property="aroundGrowthRate" jdbcType="DECIMAL" />
+    <result column="yoy_growth_num" property="yoyGrowthNum" jdbcType="INTEGER" />
+    <result column="yoy_growth_rate" property="yoyGrowthRate" jdbcType="DECIMAL" />
+    <result column="qualified_num" property="qualifiedNum" jdbcType="INTEGER" />
+    <result column="last_qualified_num" property="lastQualifiedNum" jdbcType="INTEGER" />
+    <result column="qualified_rate" property="qualifiedRate" jdbcType="DECIMAL" />
+    <result column="qualified_around_growth_num" property="qualifiedAroundGrowthNum" jdbcType="INTEGER" />
+    <result column="qualified_around_growth_rate" property="qualifiedAroundGrowthRate" jdbcType="DECIMAL" />
+    <result column="qualified_yoy_growth_num" property="qualifiedYoyGrowthNum" jdbcType="INTEGER" />
+    <result column="qualified_yoy_growth_rate" property="qualifiedYoyGrowthRate" jdbcType="DECIMAL" />
+    <result column="unqualified_num" property="unqualifiedNum" jdbcType="INTEGER" />
+    <result column="last_unqualified_num" property="lastUnqualifiedNum" jdbcType="INTEGER" />
+    <result column="unqualified_rate" property="unqualifiedRate" jdbcType="DECIMAL" />
+    <result column="unqualified_around_growth_num" property="unqualifiedAroundGrowthNum" jdbcType="INTEGER" />
+    <result column="unqualified_around_growth_rate" property="unqualifiedAroundGrowthRate" jdbcType="DECIMAL" />
+    <result column="unqualified_yoy_growth_num" property="unqualifiedYoyGrowthNum" jdbcType="INTEGER" />
+    <result column="unqualified_yoy_growth_rate" property="unqualifiedYoyGrowthRate" jdbcType="DECIMAL" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, self_company_id, self_company_name, dept_id, dept_name, archive_num, last_archive_num, 
+    around_growth_num, around_growth_rate, yoy_growth_num, yoy_growth_rate, qualified_num, 
+    last_qualified_num, qualified_rate, qualified_around_growth_num, qualified_around_growth_rate, 
+    qualified_yoy_growth_num, qualified_yoy_growth_rate, unqualified_num, last_unqualified_num, 
+    unqualified_rate, unqualified_around_growth_num, unqualified_around_growth_rate, 
+    unqualified_yoy_growth_num, unqualified_yoy_growth_rate, start_date, end_date, year, 
+    month, type, organ_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_report_contract_archive_halfmonth
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_report_contract_archive_halfmonth
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.report.model.ContractArchiveHalfmonth" >
+    insert into pub_report_contract_archive_halfmonth (id, self_company_id, self_company_name, 
+      dept_id, dept_name, archive_num, 
+      last_archive_num, around_growth_num, around_growth_rate, 
+      yoy_growth_num, yoy_growth_rate, qualified_num, 
+      last_qualified_num, qualified_rate, qualified_around_growth_num, 
+      qualified_around_growth_rate, qualified_yoy_growth_num, 
+      qualified_yoy_growth_rate, unqualified_num, 
+      last_unqualified_num, unqualified_rate, unqualified_around_growth_num, 
+      unqualified_around_growth_rate, unqualified_yoy_growth_num, 
+      unqualified_yoy_growth_rate, start_date, end_date, 
+      year, month, type, 
+      organ_id, create_time)
+    values (#{id,jdbcType=BIGINT}, #{selfCompanyId,jdbcType=VARCHAR}, #{selfCompanyName,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{archiveNum,jdbcType=INTEGER}, 
+      #{lastArchiveNum,jdbcType=INTEGER}, #{aroundGrowthNum,jdbcType=INTEGER}, #{aroundGrowthRate,jdbcType=DECIMAL}, 
+      #{yoyGrowthNum,jdbcType=INTEGER}, #{yoyGrowthRate,jdbcType=DECIMAL}, #{qualifiedNum,jdbcType=INTEGER}, 
+      #{lastQualifiedNum,jdbcType=INTEGER}, #{qualifiedRate,jdbcType=DECIMAL}, #{qualifiedAroundGrowthNum,jdbcType=INTEGER}, 
+      #{qualifiedAroundGrowthRate,jdbcType=DECIMAL}, #{qualifiedYoyGrowthNum,jdbcType=INTEGER}, 
+      #{qualifiedYoyGrowthRate,jdbcType=DECIMAL}, #{unqualifiedNum,jdbcType=INTEGER}, 
+      #{lastUnqualifiedNum,jdbcType=INTEGER}, #{unqualifiedRate,jdbcType=DECIMAL}, #{unqualifiedAroundGrowthNum,jdbcType=INTEGER}, 
+      #{unqualifiedAroundGrowthRate,jdbcType=DECIMAL}, #{unqualifiedYoyGrowthNum,jdbcType=INTEGER}, 
+      #{unqualifiedYoyGrowthRate,jdbcType=DECIMAL}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{organId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.report.model.ContractArchiveHalfmonth" >
+    insert into pub_report_contract_archive_halfmonth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="selfCompanyId != null" >
+        self_company_id,
+      </if>
+      <if test="selfCompanyName != null" >
+        self_company_name,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="archiveNum != null" >
+        archive_num,
+      </if>
+      <if test="lastArchiveNum != null" >
+        last_archive_num,
+      </if>
+      <if test="aroundGrowthNum != null" >
+        around_growth_num,
+      </if>
+      <if test="aroundGrowthRate != null" >
+        around_growth_rate,
+      </if>
+      <if test="yoyGrowthNum != null" >
+        yoy_growth_num,
+      </if>
+      <if test="yoyGrowthRate != null" >
+        yoy_growth_rate,
+      </if>
+      <if test="qualifiedNum != null" >
+        qualified_num,
+      </if>
+      <if test="lastQualifiedNum != null" >
+        last_qualified_num,
+      </if>
+      <if test="qualifiedRate != null" >
+        qualified_rate,
+      </if>
+      <if test="qualifiedAroundGrowthNum != null" >
+        qualified_around_growth_num,
+      </if>
+      <if test="qualifiedAroundGrowthRate != null" >
+        qualified_around_growth_rate,
+      </if>
+      <if test="qualifiedYoyGrowthNum != null" >
+        qualified_yoy_growth_num,
+      </if>
+      <if test="qualifiedYoyGrowthRate != null" >
+        qualified_yoy_growth_rate,
+      </if>
+      <if test="unqualifiedNum != null" >
+        unqualified_num,
+      </if>
+      <if test="lastUnqualifiedNum != null" >
+        last_unqualified_num,
+      </if>
+      <if test="unqualifiedRate != null" >
+        unqualified_rate,
+      </if>
+      <if test="unqualifiedAroundGrowthNum != null" >
+        unqualified_around_growth_num,
+      </if>
+      <if test="unqualifiedAroundGrowthRate != null" >
+        unqualified_around_growth_rate,
+      </if>
+      <if test="unqualifiedYoyGrowthNum != null" >
+        unqualified_yoy_growth_num,
+      </if>
+      <if test="unqualifiedYoyGrowthRate != null" >
+        unqualified_yoy_growth_rate,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="selfCompanyId != null" >
+        #{selfCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCompanyName != null" >
+        #{selfCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNum != null" >
+        #{archiveNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastArchiveNum != null" >
+        #{lastArchiveNum,jdbcType=INTEGER},
+      </if>
+      <if test="aroundGrowthNum != null" >
+        #{aroundGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="aroundGrowthRate != null" >
+        #{aroundGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="yoyGrowthNum != null" >
+        #{yoyGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="yoyGrowthRate != null" >
+        #{yoyGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="qualifiedNum != null" >
+        #{qualifiedNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastQualifiedNum != null" >
+        #{lastQualifiedNum,jdbcType=INTEGER},
+      </if>
+      <if test="qualifiedRate != null" >
+        #{qualifiedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="qualifiedAroundGrowthNum != null" >
+        #{qualifiedAroundGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="qualifiedAroundGrowthRate != null" >
+        #{qualifiedAroundGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="qualifiedYoyGrowthNum != null" >
+        #{qualifiedYoyGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="qualifiedYoyGrowthRate != null" >
+        #{qualifiedYoyGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unqualifiedNum != null" >
+        #{unqualifiedNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastUnqualifiedNum != null" >
+        #{lastUnqualifiedNum,jdbcType=INTEGER},
+      </if>
+      <if test="unqualifiedRate != null" >
+        #{unqualifiedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unqualifiedAroundGrowthNum != null" >
+        #{unqualifiedAroundGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="unqualifiedAroundGrowthRate != null" >
+        #{unqualifiedAroundGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unqualifiedYoyGrowthNum != null" >
+        #{unqualifiedYoyGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="unqualifiedYoyGrowthRate != null" >
+        #{unqualifiedYoyGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.report.model.ContractArchiveHalfmonth" >
+    update pub_report_contract_archive_halfmonth
+    <set >
+      <if test="selfCompanyId != null" >
+        self_company_id = #{selfCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCompanyName != null" >
+        self_company_name = #{selfCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="archiveNum != null" >
+        archive_num = #{archiveNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastArchiveNum != null" >
+        last_archive_num = #{lastArchiveNum,jdbcType=INTEGER},
+      </if>
+      <if test="aroundGrowthNum != null" >
+        around_growth_num = #{aroundGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="aroundGrowthRate != null" >
+        around_growth_rate = #{aroundGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="yoyGrowthNum != null" >
+        yoy_growth_num = #{yoyGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="yoyGrowthRate != null" >
+        yoy_growth_rate = #{yoyGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="qualifiedNum != null" >
+        qualified_num = #{qualifiedNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastQualifiedNum != null" >
+        last_qualified_num = #{lastQualifiedNum,jdbcType=INTEGER},
+      </if>
+      <if test="qualifiedRate != null" >
+        qualified_rate = #{qualifiedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="qualifiedAroundGrowthNum != null" >
+        qualified_around_growth_num = #{qualifiedAroundGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="qualifiedAroundGrowthRate != null" >
+        qualified_around_growth_rate = #{qualifiedAroundGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="qualifiedYoyGrowthNum != null" >
+        qualified_yoy_growth_num = #{qualifiedYoyGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="qualifiedYoyGrowthRate != null" >
+        qualified_yoy_growth_rate = #{qualifiedYoyGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unqualifiedNum != null" >
+        unqualified_num = #{unqualifiedNum,jdbcType=INTEGER},
+      </if>
+      <if test="lastUnqualifiedNum != null" >
+        last_unqualified_num = #{lastUnqualifiedNum,jdbcType=INTEGER},
+      </if>
+      <if test="unqualifiedRate != null" >
+        unqualified_rate = #{unqualifiedRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unqualifiedAroundGrowthNum != null" >
+        unqualified_around_growth_num = #{unqualifiedAroundGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="unqualifiedAroundGrowthRate != null" >
+        unqualified_around_growth_rate = #{unqualifiedAroundGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="unqualifiedYoyGrowthNum != null" >
+        unqualified_yoy_growth_num = #{unqualifiedYoyGrowthNum,jdbcType=INTEGER},
+      </if>
+      <if test="unqualifiedYoyGrowthRate != null" >
+        unqualified_yoy_growth_rate = #{unqualifiedYoyGrowthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.report.model.ContractArchiveHalfmonth" >
+    update pub_report_contract_archive_halfmonth
+    set self_company_id = #{selfCompanyId,jdbcType=VARCHAR},
+      self_company_name = #{selfCompanyName,jdbcType=VARCHAR},
+      dept_id = #{deptId,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      archive_num = #{archiveNum,jdbcType=INTEGER},
+      last_archive_num = #{lastArchiveNum,jdbcType=INTEGER},
+      around_growth_num = #{aroundGrowthNum,jdbcType=INTEGER},
+      around_growth_rate = #{aroundGrowthRate,jdbcType=DECIMAL},
+      yoy_growth_num = #{yoyGrowthNum,jdbcType=INTEGER},
+      yoy_growth_rate = #{yoyGrowthRate,jdbcType=DECIMAL},
+      qualified_num = #{qualifiedNum,jdbcType=INTEGER},
+      last_qualified_num = #{lastQualifiedNum,jdbcType=INTEGER},
+      qualified_rate = #{qualifiedRate,jdbcType=DECIMAL},
+      qualified_around_growth_num = #{qualifiedAroundGrowthNum,jdbcType=INTEGER},
+      qualified_around_growth_rate = #{qualifiedAroundGrowthRate,jdbcType=DECIMAL},
+      qualified_yoy_growth_num = #{qualifiedYoyGrowthNum,jdbcType=INTEGER},
+      qualified_yoy_growth_rate = #{qualifiedYoyGrowthRate,jdbcType=DECIMAL},
+      unqualified_num = #{unqualifiedNum,jdbcType=INTEGER},
+      last_unqualified_num = #{lastUnqualifiedNum,jdbcType=INTEGER},
+      unqualified_rate = #{unqualifiedRate,jdbcType=DECIMAL},
+      unqualified_around_growth_num = #{unqualifiedAroundGrowthNum,jdbcType=INTEGER},
+      unqualified_around_growth_rate = #{unqualifiedAroundGrowthRate,jdbcType=DECIMAL},
+      unqualified_yoy_growth_num = #{unqualifiedYoyGrowthNum,jdbcType=INTEGER},
+      unqualified_yoy_growth_rate = #{unqualifiedYoyGrowthRate,jdbcType=DECIMAL},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      organ_id = #{organId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

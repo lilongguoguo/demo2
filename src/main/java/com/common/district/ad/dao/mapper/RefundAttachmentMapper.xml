@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.RefundAttachmentMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.RefundAttachment" >
+    <id column="rat_id" property="ratId" jdbcType="BIGINT" />
+    <result column="ra_id" property="raId" jdbcType="BIGINT" />
+    <result column="attach_type_id" property="attachTypeId" jdbcType="INTEGER" />
+    <result column="attach_name" property="attachName" jdbcType="VARCHAR" />
+    <result column="attach_link" property="attachLink" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rat_id, ra_id, attach_type_id, attach_name, attach_link, remark, create_user_id, 
+    create_user_name, create_time, update_time, del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_ad_refund_attachment
+    where rat_id = #{ratId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_refund_attachment
+    where rat_id = #{ratId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.RefundAttachment" >
+    insert into pub_ad_refund_attachment (rat_id, ra_id, attach_type_id, 
+      attach_name, attach_link, remark, 
+      create_user_id, create_user_name, create_time, 
+      update_time, del)
+    values (#{ratId,jdbcType=BIGINT}, #{raId,jdbcType=BIGINT}, #{attachTypeId,jdbcType=INTEGER}, 
+      #{attachName,jdbcType=VARCHAR}, #{attachLink,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{del,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.RefundAttachment" >
+    insert into pub_ad_refund_attachment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ratId != null" >
+        rat_id,
+      </if>
+      <if test="raId != null" >
+        ra_id,
+      </if>
+      <if test="attachTypeId != null" >
+        attach_type_id,
+      </if>
+      <if test="attachName != null" >
+        attach_name,
+      </if>
+      <if test="attachLink != null" >
+        attach_link,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ratId != null" >
+        #{ratId,jdbcType=BIGINT},
+      </if>
+      <if test="raId != null" >
+        #{raId,jdbcType=BIGINT},
+      </if>
+      <if test="attachTypeId != null" >
+        #{attachTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="attachName != null" >
+        #{attachName,jdbcType=VARCHAR},
+      </if>
+      <if test="attachLink != null" >
+        #{attachLink,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.RefundAttachment" >
+    update pub_ad_refund_attachment
+    <set >
+      <if test="raId != null" >
+        ra_id = #{raId,jdbcType=BIGINT},
+      </if>
+      <if test="attachTypeId != null" >
+        attach_type_id = #{attachTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="attachName != null" >
+        attach_name = #{attachName,jdbcType=VARCHAR},
+      </if>
+      <if test="attachLink != null" >
+        attach_link = #{attachLink,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rat_id = #{ratId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.RefundAttachment" >
+    update pub_ad_refund_attachment
+    set ra_id = #{raId,jdbcType=BIGINT},
+      attach_type_id = #{attachTypeId,jdbcType=INTEGER},
+      attach_name = #{attachName,jdbcType=VARCHAR},
+      attach_link = #{attachLink,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del = #{del,jdbcType=INTEGER}
+    where rat_id = #{ratId,jdbcType=BIGINT}
+  </update>
+</mapper>

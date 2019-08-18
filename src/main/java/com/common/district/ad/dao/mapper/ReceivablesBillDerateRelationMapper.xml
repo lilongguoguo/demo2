@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.ReceivablesBillDerateRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.ReceivablesBillDerateRelation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="rbd_id" property="rbdId" jdbcType="BIGINT" />
+    <result column="rb_id" property="rbId" jdbcType="BIGINT" />
+    <result column="rb_derate_amount" property="rbDerateAmount" jdbcType="DECIMAL" />
+    <result column="rb_actual_amount" property="rbActualAmount" jdbcType="DECIMAL" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.common.district.ad.model.ReceivablesBillDerateRelation" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMap_ass" type="com.common.district.ad.model.ReceivablesBillDerateRelation" extends="ResultMapWithBLOBs" >
+    <association property="billDerate" column="rbd_id" select="com.common.district.ad.dao.ReceivablesBillDerateMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, rbd_id, rb_id, rb_derate_amount, rb_actual_amount, del
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pub_ad_receivables_bill_derate_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_receivables_bill_derate_relation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.ReceivablesBillDerateRelation" >
+    insert into pub_ad_receivables_bill_derate_relation (id, rbd_id, rb_id, 
+      rb_derate_amount, rb_actual_amount, del, 
+      remark)
+    values (#{id,jdbcType=BIGINT}, #{rbdId,jdbcType=BIGINT}, #{rbId,jdbcType=BIGINT}, 
+      #{rbDerateAmount,jdbcType=DECIMAL}, #{rbActualAmount,jdbcType=DECIMAL}, #{del,jdbcType=INTEGER}, 
+      #{remark,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.ReceivablesBillDerateRelation" >
+    insert into pub_ad_receivables_bill_derate_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rbdId != null" >
+        rbd_id,
+      </if>
+      <if test="rbId != null" >
+        rb_id,
+      </if>
+      <if test="rbDerateAmount != null" >
+        rb_derate_amount,
+      </if>
+      <if test="rbActualAmount != null" >
+        rb_actual_amount,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="rbdId != null" >
+        #{rbdId,jdbcType=BIGINT},
+      </if>
+      <if test="rbId != null" >
+        #{rbId,jdbcType=BIGINT},
+      </if>
+      <if test="rbDerateAmount != null" >
+        #{rbDerateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rbActualAmount != null" >
+        #{rbActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.ReceivablesBillDerateRelation" >
+    update pub_ad_receivables_bill_derate_relation
+    <set >
+      <if test="rbdId != null" >
+        rbd_id = #{rbdId,jdbcType=BIGINT},
+      </if>
+      <if test="rbId != null" >
+        rb_id = #{rbId,jdbcType=BIGINT},
+      </if>
+      <if test="rbDerateAmount != null" >
+        rb_derate_amount = #{rbDerateAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rbActualAmount != null" >
+        rb_actual_amount = #{rbActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.common.district.ad.model.ReceivablesBillDerateRelation" >
+    update pub_ad_receivables_bill_derate_relation
+    set rbd_id = #{rbdId,jdbcType=BIGINT},
+      rb_id = #{rbId,jdbcType=BIGINT},
+      rb_derate_amount = #{rbDerateAmount,jdbcType=DECIMAL},
+      rb_actual_amount = #{rbActualAmount,jdbcType=DECIMAL},
+      del = #{del,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.ReceivablesBillDerateRelation" >
+    update pub_ad_receivables_bill_derate_relation
+    set rbd_id = #{rbdId,jdbcType=BIGINT},
+      rb_id = #{rbId,jdbcType=BIGINT},
+      rb_derate_amount = #{rbDerateAmount,jdbcType=DECIMAL},
+      rb_actual_amount = #{rbActualAmount,jdbcType=DECIMAL},
+      del = #{del,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBillId" resultMap="BaseResultMap_ass" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pub_ad_receivables_bill_derate_relation
+    where rb_id = #{billId}
+  </select>
+</mapper>

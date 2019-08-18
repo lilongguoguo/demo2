@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.report.dao.ReportProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.report.model.ReportProject" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="position_resource_num" property="positionResourceNum" jdbcType="INTEGER" />
+    <result column="medium_resource_num" property="mediumResourceNum" jdbcType="INTEGER" />
+    <result column="advert_resource_num" property="advertResourceNum" jdbcType="INTEGER" />
+    <result column="site_resource_num" property="siteResourceNum" jdbcType="INTEGER" />
+    <result column="propaganda_resource_num" property="propagandaResourceNum" jdbcType="INTEGER" />
+    <result column="signed_customer_num" property="signedCustomerNum" jdbcType="INTEGER" />
+    <result column="signed_customers_num" property="signedCustomersNum" jdbcType="INTEGER" />
+    <result column="signed_contract_num" property="signedContractNum" jdbcType="INTEGER" />
+    <result column="signed_contract_amount" property="signedContractAmount" jdbcType="DECIMAL" />
+    <result column="execution_contract_num" property="executionContractNum" jdbcType="INTEGER" />
+    <result column="execution_contract_amount" property="executionContractAmount" jdbcType="DECIMAL" />
+    <result column="framework_contract_num" property="frameworkContractNum" jdbcType="INTEGER" />
+    <result column="framework_contract_amount" property="frameworkContractAmount" jdbcType="DECIMAL" />
+    <result column="create_date" property="createDate" jdbcType="DATE" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, company_name, area_id, area_name, project_id, project_name, position_resource_num, 
+    medium_resource_num, advert_resource_num, site_resource_num, propaganda_resource_num, 
+    signed_customer_num, signed_customers_num, signed_contract_num, signed_contract_amount, 
+    execution_contract_num, execution_contract_amount, framework_contract_num, framework_contract_amount, 
+    create_date, organ_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_report_project
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_report_project
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.report.model.ReportProject" >
+    insert into pub_report_project (id, company_id, company_name, 
+      area_id, area_name, project_id, 
+      project_name, position_resource_num, medium_resource_num, 
+      advert_resource_num, site_resource_num, propaganda_resource_num, 
+      signed_customer_num, signed_customers_num, 
+      signed_contract_num, signed_contract_amount, 
+      execution_contract_num, execution_contract_amount, 
+      framework_contract_num, framework_contract_amount, 
+      create_date, organ_id)
+    values (#{id,jdbcType=BIGINT}, #{companyId,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{projectName,jdbcType=VARCHAR}, #{positionResourceNum,jdbcType=INTEGER}, #{mediumResourceNum,jdbcType=INTEGER}, 
+      #{advertResourceNum,jdbcType=INTEGER}, #{siteResourceNum,jdbcType=INTEGER}, #{propagandaResourceNum,jdbcType=INTEGER}, 
+      #{signedCustomerNum,jdbcType=INTEGER}, #{signedCustomersNum,jdbcType=INTEGER}, 
+      #{signedContractNum,jdbcType=INTEGER}, #{signedContractAmount,jdbcType=DECIMAL}, 
+      #{executionContractNum,jdbcType=INTEGER}, #{executionContractAmount,jdbcType=DECIMAL}, 
+      #{frameworkContractNum,jdbcType=INTEGER}, #{frameworkContractAmount,jdbcType=DECIMAL}, 
+      #{createDate,jdbcType=DATE}, #{organId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.report.model.ReportProject" >
+    insert into pub_report_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="positionResourceNum != null" >
+        position_resource_num,
+      </if>
+      <if test="mediumResourceNum != null" >
+        medium_resource_num,
+      </if>
+      <if test="advertResourceNum != null" >
+        advert_resource_num,
+      </if>
+      <if test="siteResourceNum != null" >
+        site_resource_num,
+      </if>
+      <if test="propagandaResourceNum != null" >
+        propaganda_resource_num,
+      </if>
+      <if test="signedCustomerNum != null" >
+        signed_customer_num,
+      </if>
+      <if test="signedCustomersNum != null" >
+        signed_customers_num,
+      </if>
+      <if test="signedContractNum != null" >
+        signed_contract_num,
+      </if>
+      <if test="signedContractAmount != null" >
+        signed_contract_amount,
+      </if>
+      <if test="executionContractNum != null" >
+        execution_contract_num,
+      </if>
+      <if test="executionContractAmount != null" >
+        execution_contract_amount,
+      </if>
+      <if test="frameworkContractNum != null" >
+        framework_contract_num,
+      </if>
+      <if test="frameworkContractAmount != null" >
+        framework_contract_amount,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionResourceNum != null" >
+        #{positionResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="mediumResourceNum != null" >
+        #{mediumResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="advertResourceNum != null" >
+        #{advertResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="siteResourceNum != null" >
+        #{siteResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="propagandaResourceNum != null" >
+        #{propagandaResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="signedCustomerNum != null" >
+        #{signedCustomerNum,jdbcType=INTEGER},
+      </if>
+      <if test="signedCustomersNum != null" >
+        #{signedCustomersNum,jdbcType=INTEGER},
+      </if>
+      <if test="signedContractNum != null" >
+        #{signedContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="signedContractAmount != null" >
+        #{signedContractAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="executionContractNum != null" >
+        #{executionContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="executionContractAmount != null" >
+        #{executionContractAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="frameworkContractNum != null" >
+        #{frameworkContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="frameworkContractAmount != null" >
+        #{frameworkContractAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.report.model.ReportProject" >
+    update pub_report_project
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionResourceNum != null" >
+        position_resource_num = #{positionResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="mediumResourceNum != null" >
+        medium_resource_num = #{mediumResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="advertResourceNum != null" >
+        advert_resource_num = #{advertResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="siteResourceNum != null" >
+        site_resource_num = #{siteResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="propagandaResourceNum != null" >
+        propaganda_resource_num = #{propagandaResourceNum,jdbcType=INTEGER},
+      </if>
+      <if test="signedCustomerNum != null" >
+        signed_customer_num = #{signedCustomerNum,jdbcType=INTEGER},
+      </if>
+      <if test="signedCustomersNum != null" >
+        signed_customers_num = #{signedCustomersNum,jdbcType=INTEGER},
+      </if>
+      <if test="signedContractNum != null" >
+        signed_contract_num = #{signedContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="signedContractAmount != null" >
+        signed_contract_amount = #{signedContractAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="executionContractNum != null" >
+        execution_contract_num = #{executionContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="executionContractAmount != null" >
+        execution_contract_amount = #{executionContractAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="frameworkContractNum != null" >
+        framework_contract_num = #{frameworkContractNum,jdbcType=INTEGER},
+      </if>
+      <if test="frameworkContractAmount != null" >
+        framework_contract_amount = #{frameworkContractAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.report.model.ReportProject" >
+    update pub_report_project
+    set company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      position_resource_num = #{positionResourceNum,jdbcType=INTEGER},
+      medium_resource_num = #{mediumResourceNum,jdbcType=INTEGER},
+      advert_resource_num = #{advertResourceNum,jdbcType=INTEGER},
+      site_resource_num = #{siteResourceNum,jdbcType=INTEGER},
+      propaganda_resource_num = #{propagandaResourceNum,jdbcType=INTEGER},
+      signed_customer_num = #{signedCustomerNum,jdbcType=INTEGER},
+      signed_customers_num = #{signedCustomersNum,jdbcType=INTEGER},
+      signed_contract_num = #{signedContractNum,jdbcType=INTEGER},
+      signed_contract_amount = #{signedContractAmount,jdbcType=DECIMAL},
+      execution_contract_num = #{executionContractNum,jdbcType=INTEGER},
+      execution_contract_amount = #{executionContractAmount,jdbcType=DECIMAL},
+      framework_contract_num = #{frameworkContractNum,jdbcType=INTEGER},
+      framework_contract_amount = #{frameworkContractAmount,jdbcType=DECIMAL},
+      create_date = #{createDate,jdbcType=DATE},
+      organ_id = #{organId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

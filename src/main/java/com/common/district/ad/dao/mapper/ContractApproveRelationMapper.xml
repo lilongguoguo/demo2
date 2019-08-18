@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.ContractApproveRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.ContractApproveRelation" >
+    <id column="relation_id" property="relationId" jdbcType="BIGINT" />
+    <result column="cont_id" property="contId" jdbcType="BIGINT" />
+    <result column="instance_id" property="instanceId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+    <result column="del_time" property="delTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    relation_id, cont_id, instance_id, create_time, del, del_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_ad_contract_approve_relation
+    where relation_id = #{relationId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_contract_approve_relation
+    where relation_id = #{relationId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.ContractApproveRelation" >
+    insert into pub_ad_contract_approve_relation (relation_id, cont_id, instance_id, 
+      create_time, del, del_time
+      )
+    values (#{relationId,jdbcType=BIGINT}, #{contId,jdbcType=BIGINT}, #{instanceId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{del,jdbcType=INTEGER}, #{delTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.ContractApproveRelation" >
+    insert into pub_ad_contract_approve_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="relationId != null" >
+        relation_id,
+      </if>
+      <if test="contId != null" >
+        cont_id,
+      </if>
+      <if test="instanceId != null" >
+        instance_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+      <if test="delTime != null" >
+        del_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="relationId != null" >
+        #{relationId,jdbcType=BIGINT},
+      </if>
+      <if test="contId != null" >
+        #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="instanceId != null" >
+        #{instanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="delTime != null" >
+        #{delTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.ContractApproveRelation" >
+    update pub_ad_contract_approve_relation
+    <set >
+      <if test="contId != null" >
+        cont_id = #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="instanceId != null" >
+        instance_id = #{instanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+      <if test="delTime != null" >
+        del_time = #{delTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where relation_id = #{relationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.ContractApproveRelation" >
+    update pub_ad_contract_approve_relation
+    set cont_id = #{contId,jdbcType=BIGINT},
+      instance_id = #{instanceId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del = #{del,jdbcType=INTEGER},
+      del_time = #{delTime,jdbcType=TIMESTAMP}
+    where relation_id = #{relationId,jdbcType=BIGINT}
+  </update>
+</mapper>

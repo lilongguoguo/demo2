@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.common.district.org.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.common.district.org.model.User">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="login_id" jdbcType="VARCHAR" property="loginId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="head_url" jdbcType="VARCHAR" property="headUrl" />
+    <result column="card_no" jdbcType="VARCHAR" property="cardNo" />
+    <result column="origin_id" jdbcType="VARCHAR" property="originId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user_id" jdbcType="VARCHAR" property="updateUserId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del" jdbcType="INTEGER" property="del" />
+    <result column="del_user_id" jdbcType="VARCHAR" property="delUserId" />
+    <result column="del_time" jdbcType="TIMESTAMP" property="delTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    user_id, login_id, user_name, passwd, sex, phone, email, head_url, card_no, origin_id, 
+    status, create_user_id, create_time, update_user_id, update_time, del, del_user_id, 
+    del_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pub_org_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="findUserByLoginId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pub_org_user
+    where del = 0
+    AND status = 1
+    AND login_id = #{loginId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from pub_org_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.org.model.User">
+    insert into pub_org_user (user_id, login_id, user_name, 
+      passwd, sex, phone, 
+      email, head_url, card_no, 
+      origin_id, status, create_user_id, 
+      create_time, update_user_id, update_time, 
+      del, del_user_id, del_time
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{loginId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{passwd,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{headUrl,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, 
+      #{originId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{del,jdbcType=INTEGER}, #{delUserId,jdbcType=VARCHAR}, #{delTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.org.model.User">
+    insert into pub_org_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="loginId != null">
+        login_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="headUrl != null">
+        head_url,
+      </if>
+      <if test="cardNo != null">
+        card_no,
+      </if>
+      <if test="originId != null">
+        origin_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="del != null">
+        del,
+      </if>
+      <if test="delUserId != null">
+        del_user_id,
+      </if>
+      <if test="delTime != null">
+        del_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginId != null">
+        #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="headUrl != null">
+        #{headUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originId != null">
+        #{originId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null">
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="delUserId != null">
+        #{delUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="delTime != null">
+        #{delTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.org.model.User">
+    update pub_org_user
+    <set>
+      <if test="loginId != null">
+        login_id = #{loginId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="headUrl != null">
+        head_url = #{headUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="originId != null">
+        origin_id = #{originId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null">
+        del = #{del,jdbcType=INTEGER},
+      </if>
+      <if test="delUserId != null">
+        del_user_id = #{delUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="delTime != null">
+        del_time = #{delTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.org.model.User">
+    update pub_org_user
+    set login_id = #{loginId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      head_url = #{headUrl,jdbcType=VARCHAR},
+      card_no = #{cardNo,jdbcType=VARCHAR},
+      origin_id = #{originId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del = #{del,jdbcType=INTEGER},
+      del_user_id = #{delUserId,jdbcType=VARCHAR},
+      del_time = #{delTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <select id="getRoleVoUser" resultType="com.common.district.org.vo.UserKey">
+    SELECT user_id AS userId ,user_name AS userName
+    FROM pub_org_user
+    WHERE user_id IN
+    <foreach collection="set" open="(" separator="," close=")" item="val">
+    #{val}
+    </foreach>
+  </select>
+
+<select id="getAllDepUserByUserId" resultMap="BaseResultMap">
+    select ou.user_id, ou.login_id, ou.user_name, ou.phone
+      from pub_org_user ou ,pub_org_department_user odu
+     where ou.del = 0
+       and  odu.user_id = ou.user_id
+       and  odu.dept_id in(
+         SELECT od.dept_id
+          from pub_org_department od
+         where od.parent_id= #{companyId}
+           and  od.del = 0
+      group by od.dept_id)
+  </select>
+  <resultMap id="BaseResultMap_1" type="com.common.district.org.model.User" extends="BaseResultMap">
+    <collection property="roleList" javaType="java.util.List" ofType="com.common.district.org.model.Role">
+      <id column="role_role_id" property="roleId" jdbcType="VARCHAR" />
+      <result column="role_role_name" property="roleName" jdbcType="VARCHAR" />
+      <result column="role_role_type" property="roleType" jdbcType="INTEGER" />
+      <result column="role_role_desc" property="roleDesc" jdbcType="VARCHAR" />
+      <result column="role_origin_id" property="originId" jdbcType="VARCHAR" />
+      <result column="role_status" property="status" jdbcType="INTEGER" />
+      <result column="role_create_user_id" property="createUserId" jdbcType="VARCHAR" />
+      <result column="role_create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="role_update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+      <result column="role_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+      <result column="role_del" property="del" jdbcType="INTEGER" />
+      <result column="role_del_user_id" property="delUserId" jdbcType="VARCHAR" />
+      <result column="role_del_time" property="delTime" jdbcType="TIMESTAMP" />
+    </collection>
+    <collection property="departmentList" javaType="java.util.List" ofType="com.common.district.org.model.Department">
+      <id column="dept_dept_id" property="deptId" jdbcType="VARCHAR" />
+      <result column="dept_dept_name" property="deptName" jdbcType="VARCHAR" />
+      <result column="dept_dept_type" property="deptType" jdbcType="INTEGER" />
+      <result column="dept_dept_flag" property="deptFlag" jdbcType="VARCHAR" />
+      <result column="dept_parent_id" property="parentId" jdbcType="VARCHAR" />
+      <result column="dept_top_dept_id" property="topDeptId" jdbcType="VARCHAR" />
+      <result column="dept_origin_id" property="originId" jdbcType="VARCHAR" />
+      <result column="dept_status" property="status" jdbcType="INTEGER" />
+      <result column="dept_create_user_id" property="createUserId" jdbcType="VARCHAR" />
+      <result column="dept_create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="dept_update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+      <result column="dept_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+      <result column="dept_del" property="del" jdbcType="INTEGER" />
+      <result column="dept_del_user_id" property="delUserId" jdbcType="VARCHAR" />
+      <result column="dept_del_time" property="delTime" jdbcType="TIMESTAMP" />
+      <result column="dept_organizationCode" property="organizationCode" jdbcType="VARCHAR" />
+      <result column="dept_remark" property="remark" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List_user">
+    usr.user_id, usr.login_id, usr.user_name, usr.passwd,
+    usr.sex, usr.phone, usr.email, usr.head_url, usr.card_no,
+    usr.origin_id,usr.status, usr.create_user_id, usr.create_time,
+    usr.update_user_id, usr.update_time, usr.del, usr.del_user_id,usr.del_time
+  </sql>
+  <sql id="Base_Column_List_dept" >
+    dept.dept_id dept_dept_id, dept.dept_name dept_dept_name,
+    dept.dept_type dept_dept_type, dept.dept_flag dept_dept_flag,
+    dept.parent_id dept_parent_id, dept.top_dept_id dept_top_dept_id,
+    dept.origin_id dept_origin_id, dept.status dept_status,
+    dept.create_user_id dept_create_user_id, dept.create_time dept_create_time,
+    dept.update_user_id dept_update_user_id,dept.update_time dept_update_time,
+    dept.del dept_del, dept.del_user_id dept_del_user_id,
+    dept.del_time dept_del_time,dept.organizationCode dept_organizationCode,dept.remark dept_remark
+  </sql>
+  <sql id="Base_Column_List_role" >
+    role.role_id role_role_id, role.role_name role_role_name, role.role_type role_role_type,
+    role.role_desc role_role_desc, role.origin_id role_origin_id, role.status role_status,
+    role.create_user_id role_create_user_id, role.create_time role_create_time,
+    role.update_user_id role_update_user_id, role.update_time role_update_time, role.del role_del,
+    role.del_user_id role_del_user_id, role.del_time role_del_time
+  </sql>
+  <select id="getUserListByUserName" resultMap="BaseResultMap_1">
+    select
+    <include refid="Base_Column_List_user" />,
+    <include refid="Base_Column_List_dept" />,
+    <include refid="Base_Column_List_role" />
+    from ( SELECT u.* FROM pub_org_user u WHERE u.origin_id=#{organId} LIMIT #{cp},#{ps}) usr
+    LEFT JOIN pub_org_department_user du ON usr.user_id=du.user_id
+    LEFT JOIN pub_org_department dept ON du.dept_id=dept.dept_id
+    LEFT JOIN pub_org_role_user ru ON ru.user_id=usr.user_id
+    LEFT JOIN pub_org_role role ON ru.role_id=role.role_id
+    <where>
+      <if test="null != userName and userName !=''">
+         usr.user_name like concat('%*',#{userName},'%'}) escape '*'
+      </if>
+    </where>
+  </select>
+  <select id="getUserSizeByUserName" resultType="java.lang.Integer">
+    select
+    count(DISTINCT user_id)
+    from pub_org_user
+    <where>
+      origin_id=#{organId}
+      <if test="null != userName and userName !=''">
+        AND user_name = #{userName}
+      </if>
+    </where>
+  </select>
+  <select id="getAllRoleDeptUser" resultMap="BaseResultMap_1" parameterType="com.common.district.org.model.User">
+    select
+    <include refid="Base_Column_List_user" />,
+    <include refid="Base_Column_List_dept" />,
+    <include refid="Base_Column_List_role" />
+    from ( SELECT u.* FROM pub_org_user u WHERE u.origin_id=#{originId ,jdbcType=VARCHAR} LIMIT #{cp},#{ps}) usr
+    LEFT JOIN pub_org_department_user du ON usr.user_id=du.user_id
+    LEFT JOIN pub_org_department dept ON du.dept_id=dept.dept_id
+    LEFT JOIN pub_org_role_user ru ON ru.user_id=usr.user_id
+    LEFT JOIN pub_org_role role ON ru.role_id=role.role_id
+    <where>
+      usr.del = 0
+      <if test="null != userName and userName !=''">
+      and  usr.user_name like CONCAT('%',#{userName},'%')
+      </if>
+
+      <if test="null != roleName and roleName !=''">
+      and  role.role_name = #{roleName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != deptName and deptName !=''">
+        and  dept.dept_name = #{deptName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+        and  usr.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="null != loginId and loginId != ''">
+        and usr.login_id like CONCAT('%',#{loginId},'%')
+      </if>
+    </where>
+
+  </select>
+
+  <select id="getPersonnelListCount"  resultMap="BaseResultMap_1"  parameterType="com.common.district.org.model.User">
+    select
+    <include refid="Base_Column_List_user" />,
+    <include refid="Base_Column_List_dept" />,
+    <include refid="Base_Column_List_role" />
+    from ( SELECT u.* FROM pub_org_user u WHERE u.origin_id=#{originId ,jdbcType=VARCHAR}) usr
+    LEFT JOIN pub_org_department_user du ON usr.user_id=du.user_id
+    LEFT JOIN pub_org_department dept ON du.dept_id=dept.dept_id
+    LEFT JOIN pub_org_role_user ru ON ru.user_id=usr.user_id
+    LEFT JOIN pub_org_role role ON ru.role_id=role.role_id
+    <where>
+      usr.del = 0
+      <if test="null != userName and userName !=''">
+       and usr.user_name like CONCAT('%',#{userName},'%')
+      </if>
+      <if test="null != roleName and roleName !=''">
+        and role.role_name = #{roleName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != deptName and deptName !=''">
+        and dept.dept_name = #{deptName,jdbcType=VARCHAR}
+      </if>
+      <if test="null != status">
+        and usr.status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="null != loginId and loginId != ''">
+        and usr.login_id like CONCAT('%',#{loginId},'%')
+      </if>
+    </where>
+  </select>
+
+
+
+</mapper>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.ReceiptRecordRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.ReceiptRecordRelation" >
+    <id column="rrr_id" property="rrrId" jdbcType="BIGINT" />
+    <result column="rr_id" property="rrId" jdbcType="BIGINT" />
+    <result column="rb_id" property="rbId" jdbcType="BIGINT" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BaseResultMap_ass" type="com.common.district.ad.model.ReceiptRecordRelation" extends="BaseResultMap">
+    <association property="receiptRecord" column="rr_id" select="com.common.district.ad.dao.ReceiptRecordMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rrr_id, rr_id, rb_id, del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_ad_receipt_record_relation
+    where rrr_id = #{rrrId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_receipt_record_relation
+    where rrr_id = #{rrrId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.ReceiptRecordRelation" >
+    insert into pub_ad_receipt_record_relation (rrr_id, rr_id, rb_id, 
+      del)
+    values (#{rrrId,jdbcType=BIGINT}, #{rrId,jdbcType=BIGINT}, #{rbId,jdbcType=BIGINT}, 
+      #{del,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.ReceiptRecordRelation" >
+    insert into pub_ad_receipt_record_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rrrId != null" >
+        rrr_id,
+      </if>
+      <if test="rrId != null" >
+        rr_id,
+      </if>
+      <if test="rbId != null" >
+        rb_id,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rrrId != null" >
+        #{rrrId,jdbcType=BIGINT},
+      </if>
+      <if test="rrId != null" >
+        #{rrId,jdbcType=BIGINT},
+      </if>
+      <if test="rbId != null" >
+        #{rbId,jdbcType=BIGINT},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.ReceiptRecordRelation" >
+    update pub_ad_receipt_record_relation
+    <set >
+      <if test="rrId != null" >
+        rr_id = #{rrId,jdbcType=BIGINT},
+      </if>
+      <if test="rbId != null" >
+        rb_id = #{rbId,jdbcType=BIGINT},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rrr_id = #{rrrId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.ReceiptRecordRelation" >
+    update pub_ad_receipt_record_relation
+    set rr_id = #{rrId,jdbcType=BIGINT},
+      rb_id = #{rbId,jdbcType=BIGINT},
+      del = #{del,jdbcType=INTEGER}
+    where rrr_id = #{rrrId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBillId" resultMap="BaseResultMap_ass">
+    select
+    <include refid="Base_Column_List" />
+    from pub_ad_receipt_record_relation
+    where rb_id = #{billId}
+  </select>
+  <select id="selectBillIdByRbdId" resultType="java.lang.Long">
+    select
+    rb_id
+    from pub_ad_receipt_record_relation
+    where rbd_id = #{rbdId}
+    limit 0,1
+  </select>
+</mapper>

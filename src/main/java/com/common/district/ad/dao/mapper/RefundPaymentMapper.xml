@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.RefundPaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.RefundPayment" >
+    <id column="ri_id" property="riId" jdbcType="BIGINT" />
+    <result column="ra_id" property="raId" jdbcType="BIGINT" />
+    <result column="income_bank_name" property="incomeBankName" jdbcType="VARCHAR" />
+    <result column="income_cus_bank_name" property="incomeCusBankName" jdbcType="VARCHAR" />
+    <result column="income_cus_name" property="incomeCusName" jdbcType="VARCHAR" />
+    <result column="income_cus_account" property="incomeCusAccount" jdbcType="VARCHAR" />
+    <result column="nom_or_gov" property="nomOrGov" jdbcType="INTEGER" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ri_id, ra_id, income_bank_name, income_cus_bank_name, income_cus_name, income_cus_account, 
+    nom_or_gov, pay_type, create_user_id, create_user_name, create_time, del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_ad_refund_payment
+    where ri_id = #{riId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_refund_payment
+    where ri_id = #{riId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.RefundPayment" >
+    insert into pub_ad_refund_payment (ri_id, ra_id, income_bank_name, 
+      income_cus_bank_name, income_cus_name, income_cus_account, 
+      nom_or_gov, pay_type, create_user_id, 
+      create_user_name, create_time, del
+      )
+    values (#{riId,jdbcType=BIGINT}, #{raId,jdbcType=BIGINT}, #{incomeBankName,jdbcType=VARCHAR}, 
+      #{incomeCusBankName,jdbcType=VARCHAR}, #{incomeCusName,jdbcType=VARCHAR}, #{incomeCusAccount,jdbcType=VARCHAR}, 
+      #{nomOrGov,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{del,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.RefundPayment" >
+    insert into pub_ad_refund_payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="riId != null" >
+        ri_id,
+      </if>
+      <if test="raId != null" >
+        ra_id,
+      </if>
+      <if test="incomeBankName != null" >
+        income_bank_name,
+      </if>
+      <if test="incomeCusBankName != null" >
+        income_cus_bank_name,
+      </if>
+      <if test="incomeCusName != null" >
+        income_cus_name,
+      </if>
+      <if test="incomeCusAccount != null" >
+        income_cus_account,
+      </if>
+      <if test="nomOrGov != null" >
+        nom_or_gov,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="riId != null" >
+        #{riId,jdbcType=BIGINT},
+      </if>
+      <if test="raId != null" >
+        #{raId,jdbcType=BIGINT},
+      </if>
+      <if test="incomeBankName != null" >
+        #{incomeBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeCusBankName != null" >
+        #{incomeCusBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeCusName != null" >
+        #{incomeCusName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeCusAccount != null" >
+        #{incomeCusAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="nomOrGov != null" >
+        #{nomOrGov,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.RefundPayment" >
+    update pub_ad_refund_payment
+    <set >
+      <if test="raId != null" >
+        ra_id = #{raId,jdbcType=BIGINT},
+      </if>
+      <if test="incomeBankName != null" >
+        income_bank_name = #{incomeBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeCusBankName != null" >
+        income_cus_bank_name = #{incomeCusBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeCusName != null" >
+        income_cus_name = #{incomeCusName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeCusAccount != null" >
+        income_cus_account = #{incomeCusAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="nomOrGov != null" >
+        nom_or_gov = #{nomOrGov,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ri_id = #{riId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.RefundPayment" >
+    update pub_ad_refund_payment
+    set ra_id = #{raId,jdbcType=BIGINT},
+      income_bank_name = #{incomeBankName,jdbcType=VARCHAR},
+      income_cus_bank_name = #{incomeCusBankName,jdbcType=VARCHAR},
+      income_cus_name = #{incomeCusName,jdbcType=VARCHAR},
+      income_cus_account = #{incomeCusAccount,jdbcType=VARCHAR},
+      nom_or_gov = #{nomOrGov,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=INTEGER},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del = #{del,jdbcType=INTEGER}
+    where ri_id = #{riId,jdbcType=BIGINT}
+  </update>
+</mapper>

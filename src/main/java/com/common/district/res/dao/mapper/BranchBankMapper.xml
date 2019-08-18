@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.res.dao.BranchBankMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.res.model.BranchBank" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="branch_bank_code" property="branchBankCode" jdbcType="VARCHAR" />
+    <result column="branch_bank_name" property="branchBankName" jdbcType="VARCHAR" />
+    <result column="branch_bank_type" property="branchBankType" jdbcType="INTEGER" />
+    <result column="bank_urid" property="bankUrid" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="activity_status" property="activityStatus" jdbcType="INTEGER" />
+    <result column="tips" property="tips" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="index_order" property="indexOrder" jdbcType="INTEGER" />
+    <result column="created_user_id" property="createdUserId" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR" />
+    <result column="update_user_name" property="updateUserName" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, branch_bank_code, branch_bank_name, branch_bank_type, bank_urid, parent_id, activity_status, 
+    tips, remark, index_order, created_user_id, create_user_name, created_date, update_user_id, 
+    update_user_name, update_date, organ_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_res_branch_bank
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_res_branch_bank
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.res.model.BranchBank" >
+    insert into pub_res_branch_bank (id, branch_bank_code, branch_bank_name, 
+      branch_bank_type, bank_urid, parent_id, 
+      activity_status, tips, remark, 
+      index_order, created_user_id, create_user_name, 
+      created_date, update_user_id, update_user_name, 
+      update_date, organ_id)
+    values (#{id,jdbcType=BIGINT}, #{branchBankCode,jdbcType=VARCHAR}, #{branchBankName,jdbcType=VARCHAR}, 
+      #{branchBankType,jdbcType=INTEGER}, #{bankUrid,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{activityStatus,jdbcType=INTEGER}, #{tips,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{indexOrder,jdbcType=INTEGER}, #{createdUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=VARCHAR}, #{updateUserName,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{organId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.res.model.BranchBank" >
+    insert into pub_res_branch_bank
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="branchBankCode != null" >
+        branch_bank_code,
+      </if>
+      <if test="branchBankName != null" >
+        branch_bank_name,
+      </if>
+      <if test="branchBankType != null" >
+        branch_bank_type,
+      </if>
+      <if test="bankUrid != null" >
+        bank_urid,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="activityStatus != null" >
+        activity_status,
+      </if>
+      <if test="tips != null" >
+        tips,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="indexOrder != null" >
+        index_order,
+      </if>
+      <if test="createdUserId != null" >
+        created_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="branchBankCode != null" >
+        #{branchBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchBankName != null" >
+        #{branchBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="branchBankType != null" >
+        #{branchBankType,jdbcType=INTEGER},
+      </if>
+      <if test="bankUrid != null" >
+        #{bankUrid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="activityStatus != null" >
+        #{activityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tips != null" >
+        #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="indexOrder != null" >
+        #{indexOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserId != null" >
+        #{createdUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.res.model.BranchBank" >
+    update pub_res_branch_bank
+    <set >
+      <if test="branchBankCode != null" >
+        branch_bank_code = #{branchBankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchBankName != null" >
+        branch_bank_name = #{branchBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="branchBankType != null" >
+        branch_bank_type = #{branchBankType,jdbcType=INTEGER},
+      </if>
+      <if test="bankUrid != null" >
+        bank_urid = #{bankUrid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="activityStatus != null" >
+        activity_status = #{activityStatus,jdbcType=INTEGER},
+      </if>
+      <if test="tips != null" >
+        tips = #{tips,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="indexOrder != null" >
+        index_order = #{indexOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createdUserId != null" >
+        created_user_id = #{createdUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserName != null" >
+        update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.res.model.BranchBank" >
+    update pub_res_branch_bank
+    set branch_bank_code = #{branchBankCode,jdbcType=VARCHAR},
+      branch_bank_name = #{branchBankName,jdbcType=VARCHAR},
+      branch_bank_type = #{branchBankType,jdbcType=INTEGER},
+      bank_urid = #{bankUrid,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      activity_status = #{activityStatus,jdbcType=INTEGER},
+      tips = #{tips,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      index_order = #{indexOrder,jdbcType=INTEGER},
+      created_user_id = #{createdUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=VARCHAR},
+      update_user_name = #{updateUserName,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      organ_id = #{organId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

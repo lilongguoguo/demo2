@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.ContractMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.Contract" >
+    <id column="cont_id" property="contId" jdbcType="BIGINT" />
+    <result column="og_cont_id" property="ogContId" jdbcType="BIGINT" />
+    <result column="cont_name" property="contName" jdbcType="VARCHAR" />
+    <result column="cont_code" property="contCode" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="cont_amount" property="contAmount" jdbcType="DECIMAL" />
+    <result column="cont_type_id" property="contTypeId" jdbcType="INTEGER" />
+    <result column="res_type_id" property="resTypeId" jdbcType="VARCHAR" />
+    <result column="self_company_id" property="selfCompanyId" jdbcType="VARCHAR" />
+    <result column="self_company_name" property="selfCompanyName" jdbcType="VARCHAR" />
+    <result column="side_company_id" property="sideCompanyId" jdbcType="VARCHAR" />
+    <result column="side_company_name" property="sideCompanyName" jdbcType="VARCHAR" />
+    <result column="self_contact_id" property="selfContactId" jdbcType="VARCHAR" />
+    <result column="self_contact_name" property="selfContactName" jdbcType="VARCHAR" />
+    <result column="side_contact_id" property="sideContactId" jdbcType="VARCHAR" />
+    <result column="side_contact_name" property="sideContactName" jdbcType="VARCHAR" />
+    <result column="self_tel" property="selfTel" jdbcType="VARCHAR" />
+    <result column="side_tel" property="sideTel" jdbcType="VARCHAR" />
+    <result column="cont_start_time" property="contStartTime" jdbcType="TIMESTAMP" />
+    <result column="cont_end_time" property="contEndTime" jdbcType="TIMESTAMP" />
+    <result column="frame_cont_id" property="frameContId" jdbcType="BIGINT" />
+    <result column="frame_cont_name" property="frameContName" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="cont_status" property="contStatus" jdbcType="INTEGER" />
+    <result column="current_flow_sort" property="currentFlowSort" jdbcType="INTEGER" />
+    <result column="approve_finish_time" property="approveFinishTime" jdbcType="TIMESTAMP" />
+    <result column="archive_time" property="archiveTime" jdbcType="TIMESTAMP" />
+    <result column="overrule_time" property="overruleTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="signing_time" property="signingTime" jdbcType="TIMESTAMP" />
+    <result column="violate_type" property="violateType" jdbcType="INTEGER" />
+    <result column="violate_value" property="violateValue" jdbcType="DECIMAL" />
+    <result column="has_sup" property="hasSup" jdbcType="INTEGER" />
+    <result column="has_renewal" property="hasRenewal" jdbcType="INTEGER" />
+    <result column="signed" property="signed" jdbcType="INTEGER" />
+    <result column="cont_terminated" property="contTerminated" jdbcType="INTEGER" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.common.district.ad.model.Contract" extends="BaseResultMap" >
+    <result column="cont_declare" property="contDeclare" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cont_id, og_cont_id, cont_name, cont_code, company_id, company_name, cont_amount, 
+    cont_type_id, res_type_id, self_company_id, self_company_name, side_company_id, side_company_name, 
+    self_contact_id, self_contact_name, side_contact_id, side_contact_name, self_tel, 
+    side_tel, cont_start_time, cont_end_time, frame_cont_id, frame_cont_name, create_user_id, 
+    create_user_name, cont_status, current_flow_sort, approve_finish_time, archive_time, 
+    overrule_time, create_time, update_time, signing_time, violate_type, violate_value, 
+    has_sup, has_renewal, signed, cont_terminated, organ_id, del
+  </sql>
+  <sql id="Blob_Column_List" >
+    cont_declare
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pub_ad_contract
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_contract
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.Contract" >
+    insert into pub_ad_contract (cont_id, og_cont_id, cont_name, 
+      cont_code, company_id, company_name, 
+      cont_amount, cont_type_id, res_type_id, 
+      self_company_id, self_company_name, side_company_id, 
+      side_company_name, self_contact_id, self_contact_name, 
+      side_contact_id, side_contact_name, self_tel, 
+      side_tel, cont_start_time, cont_end_time, 
+      frame_cont_id, frame_cont_name, create_user_id, 
+      create_user_name, cont_status, current_flow_sort, 
+      approve_finish_time, archive_time, overrule_time, 
+      create_time, update_time, signing_time, 
+      violate_type, violate_value, has_sup, 
+      has_renewal, signed, cont_terminated, 
+      organ_id, del, cont_declare
+      )
+    values (#{contId,jdbcType=BIGINT}, #{ogContId,jdbcType=BIGINT}, #{contName,jdbcType=VARCHAR}, 
+      #{contCode,jdbcType=VARCHAR}, #{companyId,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{contAmount,jdbcType=DECIMAL}, #{contTypeId,jdbcType=INTEGER}, #{resTypeId,jdbcType=VARCHAR},
+      #{selfCompanyId,jdbcType=VARCHAR}, #{selfCompanyName,jdbcType=VARCHAR}, #{sideCompanyId,jdbcType=VARCHAR}, 
+      #{sideCompanyName,jdbcType=VARCHAR}, #{selfContactId,jdbcType=VARCHAR}, #{selfContactName,jdbcType=VARCHAR}, 
+      #{sideContactId,jdbcType=VARCHAR}, #{sideContactName,jdbcType=VARCHAR}, #{selfTel,jdbcType=VARCHAR}, 
+      #{sideTel,jdbcType=VARCHAR}, #{contStartTime,jdbcType=TIMESTAMP}, #{contEndTime,jdbcType=TIMESTAMP}, 
+      #{frameContId,jdbcType=BIGINT}, #{frameContName,jdbcType=VARCHAR}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{contStatus,jdbcType=INTEGER}, #{currentFlowSort,jdbcType=INTEGER}, 
+      #{approveFinishTime,jdbcType=TIMESTAMP}, #{archiveTime,jdbcType=TIMESTAMP}, #{overruleTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{signingTime,jdbcType=TIMESTAMP}, 
+      #{violateType,jdbcType=INTEGER}, #{violateValue,jdbcType=DECIMAL}, #{hasSup,jdbcType=INTEGER}, 
+      #{hasRenewal,jdbcType=INTEGER}, #{signed,jdbcType=INTEGER}, #{contTerminated,jdbcType=INTEGER}, 
+      #{organId,jdbcType=VARCHAR}, #{del,jdbcType=INTEGER}, #{contDeclare,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.Contract" useGeneratedKeys="true" keyProperty="contId">
+    insert into pub_ad_contract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contId != null" >
+        cont_id,
+      </if>
+      <if test="ogContId != null" >
+        og_cont_id,
+      </if>
+      <if test="contName != null" >
+        cont_name,
+      </if>
+      <if test="contCode != null" >
+        cont_code,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="contAmount != null" >
+        cont_amount,
+      </if>
+      <if test="contTypeId != null" >
+        cont_type_id,
+      </if>
+      <if test="resTypeId != null" >
+        res_type_id,
+      </if>
+      <if test="selfCompanyId != null" >
+        self_company_id,
+      </if>
+      <if test="selfCompanyName != null" >
+        self_company_name,
+      </if>
+      <if test="sideCompanyId != null" >
+        side_company_id,
+      </if>
+      <if test="sideCompanyName != null" >
+        side_company_name,
+      </if>
+      <if test="selfContactId != null" >
+        self_contact_id,
+      </if>
+      <if test="selfContactName != null" >
+        self_contact_name,
+      </if>
+      <if test="sideContactId != null" >
+        side_contact_id,
+      </if>
+      <if test="sideContactName != null" >
+        side_contact_name,
+      </if>
+      <if test="selfTel != null" >
+        self_tel,
+      </if>
+      <if test="sideTel != null" >
+        side_tel,
+      </if>
+      <if test="contStartTime != null" >
+        cont_start_time,
+      </if>
+      <if test="contEndTime != null" >
+        cont_end_time,
+      </if>
+      <if test="frameContId != null" >
+        frame_cont_id,
+      </if>
+      <if test="frameContName != null" >
+        frame_cont_name,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="contStatus != null" >
+        cont_status,
+      </if>
+      <if test="currentFlowSort != null" >
+        current_flow_sort,
+      </if>
+      <if test="approveFinishTime != null" >
+        approve_finish_time,
+      </if>
+      <if test="archiveTime != null" >
+        archive_time,
+      </if>
+      <if test="overruleTime != null" >
+        overrule_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="signingTime != null" >
+        signing_time,
+      </if>
+      <if test="violateType != null" >
+        violate_type,
+      </if>
+      <if test="violateValue != null" >
+        violate_value,
+      </if>
+      <if test="hasSup != null" >
+        has_sup,
+      </if>
+      <if test="hasRenewal != null" >
+        has_renewal,
+      </if>
+      <if test="signed != null" >
+        signed,
+      </if>
+      <if test="contTerminated != null" >
+        cont_terminated,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+      <if test="contDeclare != null" >
+        cont_declare,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contId != null" >
+        #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="ogContId != null" >
+        #{ogContId,jdbcType=BIGINT},
+      </if>
+      <if test="contName != null" >
+        #{contName,jdbcType=VARCHAR},
+      </if>
+      <if test="contCode != null" >
+        #{contCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contAmount != null" >
+        #{contAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="contTypeId != null" >
+        #{contTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="resTypeId != null" >
+        #{resTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCompanyId != null" >
+        #{selfCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCompanyName != null" >
+        #{selfCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="sideCompanyId != null" >
+        #{sideCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sideCompanyName != null" >
+        #{sideCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="selfContactId != null" >
+        #{selfContactId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfContactName != null" >
+        #{selfContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="sideContactId != null" >
+        #{sideContactId,jdbcType=VARCHAR},
+      </if>
+      <if test="sideContactName != null" >
+        #{sideContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="selfTel != null" >
+        #{selfTel,jdbcType=VARCHAR},
+      </if>
+      <if test="sideTel != null" >
+        #{sideTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contStartTime != null" >
+        #{contStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contEndTime != null" >
+        #{contEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="frameContId != null" >
+        #{frameContId,jdbcType=BIGINT},
+      </if>
+      <if test="frameContName != null" >
+        #{frameContName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="contStatus != null" >
+        #{contStatus,jdbcType=INTEGER},
+      </if>
+      <if test="currentFlowSort != null" >
+        #{currentFlowSort,jdbcType=INTEGER},
+      </if>
+      <if test="approveFinishTime != null" >
+        #{approveFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="archiveTime != null" >
+        #{archiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overruleTime != null" >
+        #{overruleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signingTime != null" >
+        #{signingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="violateType != null" >
+        #{violateType,jdbcType=INTEGER},
+      </if>
+      <if test="violateValue != null" >
+        #{violateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="hasSup != null" >
+        #{hasSup,jdbcType=INTEGER},
+      </if>
+      <if test="hasRenewal != null" >
+        #{hasRenewal,jdbcType=INTEGER},
+      </if>
+      <if test="signed != null" >
+        #{signed,jdbcType=INTEGER},
+      </if>
+      <if test="contTerminated != null" >
+        #{contTerminated,jdbcType=INTEGER},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+      <if test="contDeclare != null" >
+        #{contDeclare,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.Contract" >
+    update pub_ad_contract
+    <set >
+      <if test="ogContId != null" >
+        og_cont_id = #{ogContId,jdbcType=BIGINT},
+      </if>
+      <if test="contName != null" >
+        cont_name = #{contName,jdbcType=VARCHAR},
+      </if>
+      <if test="contCode != null" >
+        cont_code = #{contCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contAmount != null" >
+        cont_amount = #{contAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="contTypeId != null" >
+        cont_type_id = #{contTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="resTypeId != null" >
+        res_type_id = #{resTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCompanyId != null" >
+        self_company_id = #{selfCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfCompanyName != null" >
+        self_company_name = #{selfCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="sideCompanyId != null" >
+        side_company_id = #{sideCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sideCompanyName != null" >
+        side_company_name = #{sideCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="selfContactId != null" >
+        self_contact_id = #{selfContactId,jdbcType=VARCHAR},
+      </if>
+      <if test="selfContactName != null" >
+        self_contact_name = #{selfContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="sideContactId != null" >
+        side_contact_id = #{sideContactId,jdbcType=VARCHAR},
+      </if>
+      <if test="sideContactName != null" >
+        side_contact_name = #{sideContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="selfTel != null" >
+        self_tel = #{selfTel,jdbcType=VARCHAR},
+      </if>
+      <if test="sideTel != null" >
+        side_tel = #{sideTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contStartTime != null" >
+        cont_start_time = #{contStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contEndTime != null" >
+        cont_end_time = #{contEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="frameContId != null" >
+        frame_cont_id = #{frameContId,jdbcType=BIGINT},
+      </if>
+      <if test="frameContName != null" >
+        frame_cont_name = #{frameContName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="contStatus != null" >
+        cont_status = #{contStatus,jdbcType=INTEGER},
+      </if>
+      <if test="currentFlowSort != null" >
+        current_flow_sort = #{currentFlowSort,jdbcType=INTEGER},
+      </if>
+      <if test="approveFinishTime != null" >
+        approve_finish_time = #{approveFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="archiveTime != null" >
+        archive_time = #{archiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overruleTime != null" >
+        overrule_time = #{overruleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signingTime != null" >
+        signing_time = #{signingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="violateType != null" >
+        violate_type = #{violateType,jdbcType=INTEGER},
+      </if>
+      <if test="violateValue != null" >
+        violate_value = #{violateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="hasSup != null" >
+        has_sup = #{hasSup,jdbcType=INTEGER},
+      </if>
+      <if test="hasRenewal != null" >
+        has_renewal = #{hasRenewal,jdbcType=INTEGER},
+      </if>
+      <if test="signed != null" >
+        signed = #{signed,jdbcType=INTEGER},
+      </if>
+      <if test="contTerminated != null" >
+        cont_terminated = #{contTerminated,jdbcType=INTEGER},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+      <if test="contDeclare != null" >
+        cont_declare = #{contDeclare,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.common.district.ad.model.Contract" >
+    update pub_ad_contract
+    set og_cont_id = #{ogContId,jdbcType=BIGINT},
+      cont_name = #{contName,jdbcType=VARCHAR},
+      cont_code = #{contCode,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      cont_amount = #{contAmount,jdbcType=DECIMAL},
+      cont_type_id = #{contTypeId,jdbcType=INTEGER},
+      res_type_id = #{resTypeId,jdbcType=VARCHAR},
+      self_company_id = #{selfCompanyId,jdbcType=VARCHAR},
+      self_company_name = #{selfCompanyName,jdbcType=VARCHAR},
+      side_company_id = #{sideCompanyId,jdbcType=VARCHAR},
+      side_company_name = #{sideCompanyName,jdbcType=VARCHAR},
+      self_contact_id = #{selfContactId,jdbcType=VARCHAR},
+      self_contact_name = #{selfContactName,jdbcType=VARCHAR},
+      side_contact_id = #{sideContactId,jdbcType=VARCHAR},
+      side_contact_name = #{sideContactName,jdbcType=VARCHAR},
+      self_tel = #{selfTel,jdbcType=VARCHAR},
+      side_tel = #{sideTel,jdbcType=VARCHAR},
+      cont_start_time = #{contStartTime,jdbcType=TIMESTAMP},
+      cont_end_time = #{contEndTime,jdbcType=TIMESTAMP},
+      frame_cont_id = #{frameContId,jdbcType=BIGINT},
+      frame_cont_name = #{frameContName,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      cont_status = #{contStatus,jdbcType=INTEGER},
+      current_flow_sort = #{currentFlowSort,jdbcType=INTEGER},
+      approve_finish_time = #{approveFinishTime,jdbcType=TIMESTAMP},
+      archive_time = #{archiveTime,jdbcType=TIMESTAMP},
+      overrule_time = #{overruleTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      signing_time = #{signingTime,jdbcType=TIMESTAMP},
+      violate_type = #{violateType,jdbcType=INTEGER},
+      violate_value = #{violateValue,jdbcType=DECIMAL},
+      has_sup = #{hasSup,jdbcType=INTEGER},
+      has_renewal = #{hasRenewal,jdbcType=INTEGER},
+      signed = #{signed,jdbcType=INTEGER},
+      cont_terminated = #{contTerminated,jdbcType=INTEGER},
+      organ_id = #{organId,jdbcType=VARCHAR},
+      del = #{del,jdbcType=INTEGER},
+      cont_declare = #{contDeclare,jdbcType=LONGVARCHAR}
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.Contract" >
+    update pub_ad_contract
+    set og_cont_id = #{ogContId,jdbcType=BIGINT},
+      cont_name = #{contName,jdbcType=VARCHAR},
+      cont_code = #{contCode,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      cont_amount = #{contAmount,jdbcType=DECIMAL},
+      cont_type_id = #{contTypeId,jdbcType=INTEGER},
+      res_type_id = #{resTypeId,jdbcType=VARCHAR},
+      self_company_id = #{selfCompanyId,jdbcType=VARCHAR},
+      self_company_name = #{selfCompanyName,jdbcType=VARCHAR},
+      side_company_id = #{sideCompanyId,jdbcType=VARCHAR},
+      side_company_name = #{sideCompanyName,jdbcType=VARCHAR},
+      self_contact_id = #{selfContactId,jdbcType=VARCHAR},
+      self_contact_name = #{selfContactName,jdbcType=VARCHAR},
+      side_contact_id = #{sideContactId,jdbcType=VARCHAR},
+      side_contact_name = #{sideContactName,jdbcType=VARCHAR},
+      self_tel = #{selfTel,jdbcType=VARCHAR},
+      side_tel = #{sideTel,jdbcType=VARCHAR},
+      cont_start_time = #{contStartTime,jdbcType=TIMESTAMP},
+      cont_end_time = #{contEndTime,jdbcType=TIMESTAMP},
+      frame_cont_id = #{frameContId,jdbcType=BIGINT},
+      frame_cont_name = #{frameContName,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      cont_status = #{contStatus,jdbcType=INTEGER},
+      current_flow_sort = #{currentFlowSort,jdbcType=INTEGER},
+      approve_finish_time = #{approveFinishTime,jdbcType=TIMESTAMP},
+      archive_time = #{archiveTime,jdbcType=TIMESTAMP},
+      overrule_time = #{overruleTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      signing_time = #{signingTime,jdbcType=TIMESTAMP},
+      violate_type = #{violateType,jdbcType=INTEGER},
+      violate_value = #{violateValue,jdbcType=DECIMAL},
+      has_sup = #{hasSup,jdbcType=INTEGER},
+      has_renewal = #{hasRenewal,jdbcType=INTEGER},
+      signed = #{signed,jdbcType=INTEGER},
+      cont_terminated = #{contTerminated,jdbcType=INTEGER},
+      organ_id = #{organId,jdbcType=VARCHAR},
+      del = #{del,jdbcType=INTEGER}
+    where cont_id = #{contId,jdbcType=BIGINT}
+  </update>
+
+  <select id="listCanBeBoundContracts" resultMap="BaseResultMap">
+    SELECT cont_id, cont_name, cont_code, cont_type_id, res_type_id,
+    self_company_id, side_company_id, cont_start_time, cont_end_time
+    FROM pub_ad_contract
+    WHERE
+    organ_id = #{organId, jdbcType=VARCHAR}
+    AND cont_status=#{contStatus, jdbcType=INTEGER}
+    AND cont_type_id = 2
+    AND del=0
+  </select>
+</mapper>

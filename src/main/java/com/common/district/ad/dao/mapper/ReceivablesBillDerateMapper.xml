@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.ReceivablesBillDerateMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.ReceivablesBillDerate" >
+    <id column="rbd_id" property="rbdId" jdbcType="BIGINT" />
+    <result column="derate_status" property="derateStatus" jdbcType="INTEGER" />
+    <result column="apply_user_id" property="applyUserId" jdbcType="VARCHAR" />
+    <result column="apply_user_name" property="applyUserName" jdbcType="VARCHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="DATE" />
+    <result column="cont_id" property="contId" jdbcType="BIGINT" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="is_del" property="isDel" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rbd_id, derate_status, apply_user_id, apply_user_name, apply_time, cont_id, create_user_id, 
+    create_user_name, create_time, is_del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_ad_receivables_bill_derate
+    where rbd_id = #{rbdId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_receivables_bill_derate
+    where rbd_id = #{rbdId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.ReceivablesBillDerate" >
+    insert into pub_ad_receivables_bill_derate (rbd_id, derate_status, apply_user_id, 
+      apply_user_name, apply_time, cont_id, 
+      create_user_id, create_user_name, create_time, 
+      is_del)
+    values (#{rbdId,jdbcType=BIGINT}, #{derateStatus,jdbcType=INTEGER}, #{applyUserId,jdbcType=VARCHAR}, 
+      #{applyUserName,jdbcType=VARCHAR}, #{applyTime,jdbcType=DATE}, #{contId,jdbcType=BIGINT}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isDel,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.ReceivablesBillDerate" >
+    insert into pub_ad_receivables_bill_derate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rbdId != null" >
+        rbd_id,
+      </if>
+      <if test="derateStatus != null" >
+        derate_status,
+      </if>
+      <if test="applyUserId != null" >
+        apply_user_id,
+      </if>
+      <if test="applyUserName != null" >
+        apply_user_name,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="contId != null" >
+        cont_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rbdId != null" >
+        #{rbdId,jdbcType=BIGINT},
+      </if>
+      <if test="derateStatus != null" >
+        #{derateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="applyUserId != null" >
+        #{applyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserName != null" >
+        #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=DATE},
+      </if>
+      <if test="contId != null" >
+        #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelectiveKey" parameterType="com.common.district.ad.model.ReceivablesBillDerate" useGeneratedKeys="true" keyProperty="rbdId" keyColumn="rbd_id">
+    insert into pub_ad_receivables_bill_derate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rbdId != null" >
+        rbd_id,
+      </if>
+      <if test="derateStatus != null" >
+        derate_status,
+      </if>
+      <if test="applyUserId != null" >
+        apply_user_id,
+      </if>
+      <if test="applyUserName != null" >
+        apply_user_name,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="contId != null" >
+        cont_id,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="createUserName != null" >
+        create_user_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rbdId != null" >
+        #{rbdId,jdbcType=BIGINT},
+      </if>
+      <if test="derateStatus != null" >
+        #{derateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="applyUserId != null" >
+        #{applyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserName != null" >
+        #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=DATE},
+      </if>
+      <if test="contId != null" >
+        #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.ReceivablesBillDerate" >
+    update pub_ad_receivables_bill_derate
+    <set >
+      <if test="derateStatus != null" >
+        derate_status = #{derateStatus,jdbcType=INTEGER},
+      </if>
+      <if test="applyUserId != null" >
+        apply_user_id = #{applyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyUserName != null" >
+        apply_user_name = #{applyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=DATE},
+      </if>
+      <if test="contId != null" >
+        cont_id = #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null" >
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rbd_id = #{rbdId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.ReceivablesBillDerate" >
+    update pub_ad_receivables_bill_derate
+    set derate_status = #{derateStatus,jdbcType=INTEGER},
+      apply_user_id = #{applyUserId,jdbcType=VARCHAR},
+      apply_user_name = #{applyUserName,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=DATE},
+      cont_id = #{contId,jdbcType=BIGINT},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_del = #{isDel,jdbcType=INTEGER}
+    where rbd_id = #{rbdId,jdbcType=BIGINT}
+  </update>
+  <sql id="selectReceivablesBill_sql">
+    <trim prefixOverrides="AND">
+      <if test="null !=vo.rbNo and vo.rbNo !=''">
+        AND bill.rb_no=#{vo.rbNo}
+      </if>
+      <if test="null !=vo.contNo and vo.contNo !=''">
+        AND bill.cont_no=#{vo.contNo}
+      </if>
+      <if test="null !=vo.companyId and vo.companyId !=''">
+        AND bill.company_id=#{vo.companyId}
+      </if>
+      <if test="null !=vo.companyName and vo.companyName !=''">
+        AND bill.company_name=#{vo.companyName}
+      </if>
+      <if test="null !=vo.cusId and vo.cusId !=''">
+        AND bill.cus_id=#{vo.cusId}
+      </if>
+      <if test="null !=vo.cusName and vo.cusName !=''">
+        AND bill.cus_name=#{vo.cusName}
+      </if>
+      <if test="null !=vo.proId and vo.proId !=''">
+        AND bill.pro_id=#{vo.proId}
+      </if>
+      <if test="null !=vo.proName and vo.proName !=''">
+        AND bill.pro_name=#{vo.proName}
+      </if>
+      <if test="null !=vo.costType">
+        AND bill.cost_type=#{vo.costType}
+      </if>
+      <if test="null !=vo.costTypeName and vo.costTypeName !=''">
+        AND bill.cost_type_name=#{vo.costTypeName}
+      </if>
+      <if test="null !=vo.operatorName and vo.operatorName !=''">
+        AND bill.operator_name=#{vo.operatorName}
+      </if>
+      <if test="null !=vo.rbStartDate">
+        AND bill.rb_date &gt;=#{vo.rbStartDate}
+      </if>
+      <if test="null !=vo.rbEndDate">
+        AND bill.rb_date &lt;=#{vo.rbEndDate}
+      </if>
+      <if test="null !=vo.rbDerateRegister">
+        AND bill.rb_derate_register =#{vo.rbDerateRegister}
+      </if>
+      <if test="null !=vo.rbStatus">
+        AND bill.rb_status =#{vo.rbStatus}
+      </if>
+      <if test="null !=vo.derateSubPerson and vo.derateSubPerson !=''">
+        AND dr.create_user_name =#{vo.derateSubPerson}
+      </if>
+      <if test="null !=vo.derateStartDate">
+        AND dr.create_time &gt;=#{vo.derateStartDate}
+      </if>
+      <if test="null !=vo.derateEndDate">
+        AND dr.create_time &lt;=#{vo.derateEndDate}
+      </if>
+      <if test="null !=vo.approveStatus">
+        AND ins.approve_status =#{vo.approveStatus}
+      </if>
+      AND bill.organ_id =#{vo.organId}
+    </trim>
+  </sql>
+  <sql id="selectReceivablesBill_sql_two">
+    <trim prefixOverrides="AND">
+      <if test="null !=vo.rbNo and vo.rbNo !=''">
+        AND bill1.rb_no=#{vo.rbNo}
+      </if>
+      <if test="null !=vo.contNo and vo.contNo !=''">
+        AND bill1.cont_no=#{vo.contNo}
+      </if>
+      <if test="null !=vo.companyId and vo.companyId !=''">
+        AND bill1.company_id=#{vo.companyId}
+      </if>
+      <if test="null !=vo.companyName and vo.companyName !=''">
+        AND bill1.company_name=#{vo.companyName}
+      </if>
+      <if test="null !=vo.cusId and vo.cusId !=''">
+        AND bill1.cus_id=#{vo.cusId}
+      </if>
+      <if test="null !=vo.cusName and vo.cusName !=''">
+        AND bill1.cus_name=#{vo.cusName}
+      </if>
+      <if test="null !=vo.proId and vo.proId !=''">
+        AND bill1.pro_id=#{vo.proId}
+      </if>
+      <if test="null !=vo.proName and vo.proName !=''">
+        AND bill1.pro_name=#{vo.proName}
+      </if>
+      <if test="null !=vo.costType">
+        AND bill1.cost_type=#{vo.costType}
+      </if>
+      <if test="null !=vo.costTypeName and vo.costTypeName !=''">
+        AND bill1.cost_type_name=#{vo.costTypeName}
+      </if>
+      <if test="null !=vo.operatorName and vo.operatorName !=''">
+        AND bill1.operator_name=#{vo.operatorName}
+      </if>
+      <if test="null !=vo.rbStartDate">
+        AND bill1.rb_date &gt;=#{vo.rbStartDate}
+      </if>
+      <if test="null !=vo.rbEndDate">
+        AND bill1.rb_date &lt;=#{vo.rbEndDate}
+      </if>
+      <if test="null !=vo.rbDerateRegister">
+        AND bill1.rb_derate_register =#{vo.rbDerateRegister}
+      </if>
+      <if test="null !=vo.rbStatus">
+        AND bill1.rb_status =#{vo.rbStatus}
+      </if>
+      <if test="null !=vo.derateSubPerson and vo.derateSubPerson !=''">
+        AND dr1.create_user_name =#{vo.derateSubPerson}
+      </if>
+      <if test="null !=vo.derateStartDate">
+        AND dr1.create_time &gt;=#{vo.derateStartDate}
+      </if>
+      <if test="null !=vo.derateEndDate">
+        AND dr1.create_time &lt;=#{vo.derateEndDate}
+      </if>
+      <if test="null !=vo.approveStatus">
+        AND ins1.approve_status =#{vo.approveStatus}
+      </if>
+        AND bill1.organ_id =#{vo.organId}
+    </trim>
+  </sql>
+  <select id="selectReceivablesBillDerateByCondition" resultType="com.common.district.ad.vo.ReceivablesBillDerateReturnVo">
+    SELECT w.* FROM (
+      <if test="null==vo.derateType or vo.derateType==0">
+        SELECT
+        bill.rb_no rbNo,
+        bill.cont_no contNo,
+        "应收金额减免" costType,
+        bill.rb_id rbId,
+        dr.create_user_name createUserName,
+        dr.create_time createTime,
+        ins.approve_status approveStatus
+        FROM pub_ad_receivables_bill bill
+        INNER JOIN pub_ad_receivables_bill_derate_relation rel ON bill.rb_id=rel.rb_id
+        INNER JOIN pub_ad_receivables_bill_derate dr ON rel.rbd_id=dr.rbd_id
+        LEFT JOIN pub_bpm_instance ins ON dr.rbd_id=ins.relation_id AND ins.relation_type=2 AND ins.del=0
+        <where>
+          <include refid="selectReceivablesBill_sql"/>
+        </where>
+      </if>
+      <if test="null==vo.derateType">
+        UNION ALL
+      </if>
+      <if test="null==vo.derateType or vo.derateType==1">
+        SELECT
+          bill1.rb_no rbNo,
+          bill1.cont_no contNo,
+          "违约金" costType,
+          bill1.rb_id rbId,
+          dr1.create_user_name createUserName,
+          dr1.create_time createTime,
+          ins1.approve_status approveStatus
+          FROM pub_ad_receivables_bill bill1
+          INNER JOIN pub_ad_violate_derate_relation rel1 ON bill1.rb_id=rel1.rb_id
+          INNER JOIN pub_ad_violate_derate dr1 ON rel1.rvb_id=dr1.rvd_id
+          LEFT JOIN pub_bpm_instance ins1 ON dr1.rvd_id=ins1.relation_id AND ins1.relation_type=3 AND ins1.del=0
+        <where>
+            <include refid="selectReceivablesBill_sql_two"/>
+        </where>
+      </if>
+    ) w
+    limit #{vo.cp},#{vo.ps}
+  </select>
+  <select id="selectReceivablesBillDerateCountByCondition" resultType="java.lang.Integer">
+    SELECT count(w.rbId) FROM (
+    <if test="null==vo.derateType or vo.derateType==0">
+      SELECT
+      bill.rb_no rbNo,
+      bill.cont_no contNo,
+      "应收金额减免" costType,
+      bill.rb_id rbId,
+      dr.create_user_name createUserName,
+      dr.create_time createTime,
+      ins.approve_status approveStatus
+      FROM pub_ad_receivables_bill bill
+      INNER JOIN pub_ad_receivables_bill_derate_relation rel ON bill.rb_id=rel.rb_id
+      INNER JOIN pub_ad_receivables_bill_derate dr ON rel.rbd_id=dr.rbd_id
+      LEFT JOIN pub_bpm_instance ins ON dr.rbd_id=ins.relation_id AND ins.relation_type=2 AND ins.del=0
+      <where>
+        <include refid="selectReceivablesBill_sql"/>
+      </where>
+    </if>
+    <if test="null==vo.derateType">
+      UNION ALL
+    </if>
+    <if test="null==vo.derateType or vo.derateType==1">
+      SELECT
+      bill1.rb_no rbNo,
+      bill1.cont_no contNo,
+      "违约金" costType,
+      bill1.rb_id rbId,
+      dr1.create_user_name createUserName,
+      dr1.create_time createTime,
+      ins1.approve_status approveStatus
+      FROM pub_ad_receivables_bill bill1
+      INNER JOIN pub_ad_violate_derate_relation rel1 ON bill1.rb_id=rel1.rb_id
+      INNER JOIN pub_ad_violate_derate dr1 ON rel1.rvb_id=dr1.rvd_id
+      LEFT JOIN pub_bpm_instance ins1 ON dr1.rvd_id=ins1.relation_id AND ins1.relation_type=3 AND ins1.del=0
+      <where>
+        <include refid="selectReceivablesBill_sql_two"/>
+      </where>
+    </if>
+    ) w
+  </select>
+  <select id="isExistFlowByBillId" resultType="java.lang.Integer">
+    SELECT
+    count(bill.rb_id)
+    FROM pub_ad_receivables_bill bill
+    INNER JOIN pub_ad_receivables_bill_derate_relation rel ON bill.rb_id=rel.rb_id
+    INNER JOIN pub_ad_receivables_bill_derate dr ON rel.rbd_id=dr.rbd_id
+    LEFT JOIN pub_bpm_instance ins ON dr.rbd_id=ins.relation_id AND ins.relation_type=2 AND ins.del=0
+    WHERE bill.rb_id=#{billId}
+    and ins.approve_status not in(500,600)
+  </select>
+  <select id="isExistViolateFlowByBillId" resultType="java.lang.Integer">
+    SELECT
+    count(bill.rb_id)
+    FROM pub_ad_receivables_bill bill
+    INNER JOIN pub_ad_violate_derate_relation rel ON bill.rb_id=rel.rb_id
+    INNER JOIN pub_ad_violate_derate dr ON rel.rvb_id=dr.rvd_id
+    LEFT JOIN pub_bpm_instance ins ON dr.rvd_id=ins.relation_id AND ins.relation_type=3 AND ins.del=0
+    WHERE bill.rb_id=#{billId}
+    and ins.approve_status not in(500,600)
+  </select>
+</mapper>

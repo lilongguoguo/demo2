@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.res.dao.DictsMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.res.model.Dicts" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="dicts_name" property="dictsName" jdbcType="VARCHAR" />
+    <result column="dicts_code" property="dictsCode" jdbcType="BIGINT" />
+    <result column="dicts_parent_cdoe" property="dictsParentCdoe" jdbcType="BIGINT" />
+    <result column="dicts_type" property="dictsType" jdbcType="VARCHAR" />
+    <result column="dicts_type_desp" property="dictsTypeDesp" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="updateuser_id" property="updateuserId" jdbcType="VARCHAR" />
+    <result column="organ_id" property="organId" jdbcType="VARCHAR" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, dicts_name, dicts_code, dicts_parent_cdoe, dicts_type, dicts_type_desp, create_time, 
+    create_user_id, update_time, updateuser_id, organ_id, del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_res_dicts
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_res_dicts
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.res.model.Dicts" >
+    insert into pub_res_dicts (id, dicts_name, dicts_code, 
+      dicts_parent_cdoe, dicts_type, dicts_type_desp, 
+      create_time, create_user_id, update_time, 
+      updateuser_id, organ_id, del
+      )
+    values (#{id,jdbcType=BIGINT}, #{dictsName,jdbcType=VARCHAR}, #{dictsCode,jdbcType=BIGINT}, 
+      #{dictsParentCdoe,jdbcType=BIGINT}, #{dictsType,jdbcType=VARCHAR}, #{dictsTypeDesp,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateuserId,jdbcType=VARCHAR}, #{organId,jdbcType=VARCHAR}, #{del,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.res.model.Dicts" >
+    insert into pub_res_dicts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dictsName != null" >
+        dicts_name,
+      </if>
+      <if test="dictsCode != null" >
+        dicts_code,
+      </if>
+      <if test="dictsParentCdoe != null" >
+        dicts_parent_cdoe,
+      </if>
+      <if test="dictsType != null" >
+        dicts_type,
+      </if>
+      <if test="dictsTypeDesp != null" >
+        dicts_type_desp,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateuserId != null" >
+        updateuser_id,
+      </if>
+      <if test="organId != null" >
+        organ_id,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dictsName != null" >
+        #{dictsName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictsCode != null" >
+        #{dictsCode,jdbcType=BIGINT},
+      </if>
+      <if test="dictsParentCdoe != null" >
+        #{dictsParentCdoe,jdbcType=BIGINT},
+      </if>
+      <if test="dictsType != null" >
+        #{dictsType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictsTypeDesp != null" >
+        #{dictsTypeDesp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuserId != null" >
+        #{updateuserId,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.res.model.Dicts" >
+    update pub_res_dicts
+    <set >
+      <if test="dictsName != null" >
+        dicts_name = #{dictsName,jdbcType=VARCHAR},
+      </if>
+      <if test="dictsCode != null" >
+        dicts_code = #{dictsCode,jdbcType=BIGINT},
+      </if>
+      <if test="dictsParentCdoe != null" >
+        dicts_parent_cdoe = #{dictsParentCdoe,jdbcType=BIGINT},
+      </if>
+      <if test="dictsType != null" >
+        dicts_type = #{dictsType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictsTypeDesp != null" >
+        dicts_type_desp = #{dictsTypeDesp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuserId != null" >
+        updateuser_id = #{updateuserId,jdbcType=VARCHAR},
+      </if>
+      <if test="organId != null" >
+        organ_id = #{organId,jdbcType=VARCHAR},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.res.model.Dicts" >
+    update pub_res_dicts
+    set dicts_name = #{dictsName,jdbcType=VARCHAR},
+      dicts_code = #{dictsCode,jdbcType=BIGINT},
+      dicts_parent_cdoe = #{dictsParentCdoe,jdbcType=BIGINT},
+      dicts_type = #{dictsType,jdbcType=VARCHAR},
+      dicts_type_desp = #{dictsTypeDesp,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      updateuser_id = #{updateuserId,jdbcType=VARCHAR},
+      organ_id = #{organId,jdbcType=VARCHAR},
+      del = #{del,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getDictsByType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from pub_res_dicts
+    where organ_id = #{organId,jdbcType=VARCHAR}
+      and dicts_type=#{dictType,jdbcType=VARCHAR}
+      and del = 0
+  </select>
+  <select id="selectByDepartmentOfType" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from pub_res_dicts
+    WHERE  dicts_parent_cdoe = #{departmentOfType,jdbcType=BIGINT}
+    and organ_id = #{organId,jdbcType=VARCHAR}
+    and del = 0
+  </select>
+</mapper>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.bpm.dao.BpmInstanceNoteMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.bpm.model.BpmInstanceNote" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="instance_id" property="instanceId" jdbcType="BIGINT" />
+    <result column="note_sort" property="noteSort" jdbcType="INTEGER" />
+    <result column="note_name" property="noteName" jdbcType="VARCHAR" />
+    <result column="note_code" property="noteCode" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, instance_id, note_sort, note_name, note_code, active
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_bpm_instance_note
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_bpm_instance_note
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.bpm.model.BpmInstanceNote" keyProperty="id" useGeneratedKeys="true">
+    insert into pub_bpm_instance_note (id, instance_id, note_sort, 
+      note_name, note_code, active
+      )
+    values (#{id,jdbcType=BIGINT}, #{instanceId,jdbcType=BIGINT}, #{noteSort,jdbcType=INTEGER}, 
+      #{noteName,jdbcType=VARCHAR}, #{noteCode,jdbcType=VARCHAR}, #{active,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.bpm.model.BpmInstanceNote" useGeneratedKeys="true" keyProperty="id">
+    insert into pub_bpm_instance_note
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="instanceId != null" >
+        instance_id,
+      </if>
+      <if test="noteSort != null" >
+        note_sort,
+      </if>
+      <if test="noteName != null" >
+        note_name,
+      </if>
+      <if test="noteCode != null" >
+        note_code,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="instanceId != null" >
+        #{instanceId,jdbcType=BIGINT},
+      </if>
+      <if test="noteSort != null" >
+        #{noteSort,jdbcType=INTEGER},
+      </if>
+      <if test="noteName != null" >
+        #{noteName,jdbcType=VARCHAR},
+      </if>
+      <if test="noteCode != null" >
+        #{noteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.bpm.model.BpmInstanceNote" >
+    update pub_bpm_instance_note
+    <set >
+      <if test="instanceId != null" >
+        instance_id = #{instanceId,jdbcType=BIGINT},
+      </if>
+      <if test="noteSort != null" >
+        note_sort = #{noteSort,jdbcType=INTEGER},
+      </if>
+      <if test="noteName != null" >
+        note_name = #{noteName,jdbcType=VARCHAR},
+      </if>
+      <if test="noteCode != null" >
+        note_code = #{noteCode,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        active = #{active,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.bpm.model.BpmInstanceNote" >
+    update pub_bpm_instance_note
+    set instance_id = #{instanceId,jdbcType=BIGINT},
+      note_sort = #{noteSort,jdbcType=INTEGER},
+      note_name = #{noteName,jdbcType=VARCHAR},
+      note_code = #{noteCode,jdbcType=VARCHAR},
+      active = #{active,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="batchInsert">
+    insert into pub_bpm_instance_note (id, instance_id, note_sort,
+      note_name, note_code, active
+      )
+    values
+    <foreach collection="noteList" separator="," item="note">
+      (#{note.id,jdbcType=BIGINT}, #{note.instanceId,jdbcType=BIGINT}, #{note.noteSort,jdbcType=INTEGER},
+      #{note.noteName,jdbcType=VARCHAR}, #{note.noteCode,jdbcType=VARCHAR}, #{note.active,jdbcType=INTEGER}
+      )
+    </foreach>
+  </insert>
+  <select id="getNoteByInstanceId" resultType="Map">
+    SELECT bin.note_sort noteSort,bin.note_name noteName,GROUP_CONCAT(binp.user_name) userNames,bin.active
+    from pub_bpm_instance_note bin
+    LEFT JOIN pub_bpm_instance_note_people binp on bin.id = binp.instance_note_id
+    where bin.instance_id=#{instanceId}
+    GROUP BY bin.id ORDER BY bin.note_sort
+  </select>
+  <select id="getCurrentNoteByInstanceId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    from pub_bpm_instance_note
+    where instance_id=#{instanceId} and active = 1
+  </select>
+  <select id="getNextNote" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    from pub_bpm_instance_note
+    where instance_id=#{instanceId} and note_sort = #{noteSort}
+  </select>
+</mapper>

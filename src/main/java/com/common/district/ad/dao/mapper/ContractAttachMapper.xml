@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.common.district.ad.dao.ContractAttachMapper" >
+  <resultMap id="BaseResultMap" type="com.common.district.ad.model.ContractAttach" >
+    <id column="cont_attach_id" property="contAttachId" jdbcType="BIGINT" />
+    <result column="cont_id" property="contId" jdbcType="BIGINT" />
+    <result column="attach_type_id" property="attachTypeId" jdbcType="TINYINT" />
+    <result column="cont_attach_name" property="contAttachName" jdbcType="VARCHAR" />
+    <result column="cont_attach_link" property="contAttachLink" jdbcType="VARCHAR" />
+    <result column="cont_attach_declare" property="contAttachDeclare" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="del" property="del" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cont_attach_id, cont_id, attach_type_id, cont_attach_name, cont_attach_link, cont_attach_declare, 
+    create_date, update_time, del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pub_ad_contract_attach
+    where cont_attach_id = #{contAttachId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pub_ad_contract_attach
+    where cont_attach_id = #{contAttachId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.common.district.ad.model.ContractAttach" >
+    insert into pub_ad_contract_attach (cont_attach_id, cont_id, attach_type_id, 
+      cont_attach_name, cont_attach_link, cont_attach_declare, 
+      create_date, update_time, del
+      )
+    values (#{contAttachId,jdbcType=BIGINT}, #{contId,jdbcType=BIGINT}, #{attachTypeId,jdbcType=TINYINT}, 
+      #{contAttachName,jdbcType=VARCHAR}, #{contAttachLink,jdbcType=VARCHAR}, #{contAttachDeclare,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{del,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.common.district.ad.model.ContractAttach" >
+    insert into pub_ad_contract_attach
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contAttachId != null" >
+        cont_attach_id,
+      </if>
+      <if test="contId != null" >
+        cont_id,
+      </if>
+      <if test="attachTypeId != null" >
+        attach_type_id,
+      </if>
+      <if test="contAttachName != null" >
+        cont_attach_name,
+      </if>
+      <if test="contAttachLink != null" >
+        cont_attach_link,
+      </if>
+      <if test="contAttachDeclare != null" >
+        cont_attach_declare,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="del != null" >
+        del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contAttachId != null" >
+        #{contAttachId,jdbcType=BIGINT},
+      </if>
+      <if test="contId != null" >
+        #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="attachTypeId != null" >
+        #{attachTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="contAttachName != null" >
+        #{contAttachName,jdbcType=VARCHAR},
+      </if>
+      <if test="contAttachLink != null" >
+        #{contAttachLink,jdbcType=VARCHAR},
+      </if>
+      <if test="contAttachDeclare != null" >
+        #{contAttachDeclare,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        #{del,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.common.district.ad.model.ContractAttach" >
+    update pub_ad_contract_attach
+    <set >
+      <if test="contId != null" >
+        cont_id = #{contId,jdbcType=BIGINT},
+      </if>
+      <if test="attachTypeId != null" >
+        attach_type_id = #{attachTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="contAttachName != null" >
+        cont_attach_name = #{contAttachName,jdbcType=VARCHAR},
+      </if>
+      <if test="contAttachLink != null" >
+        cont_attach_link = #{contAttachLink,jdbcType=VARCHAR},
+      </if>
+      <if test="contAttachDeclare != null" >
+        cont_attach_declare = #{contAttachDeclare,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="del != null" >
+        del = #{del,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cont_attach_id = #{contAttachId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.common.district.ad.model.ContractAttach" >
+    update pub_ad_contract_attach
+    set cont_id = #{contId,jdbcType=BIGINT},
+      attach_type_id = #{attachTypeId,jdbcType=TINYINT},
+      cont_attach_name = #{contAttachName,jdbcType=VARCHAR},
+      cont_attach_link = #{contAttachLink,jdbcType=VARCHAR},
+      cont_attach_declare = #{contAttachDeclare,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      del = #{del,jdbcType=INTEGER}
+    where cont_attach_id = #{contAttachId,jdbcType=BIGINT}
+  </update>
+
+  <insert id="insertContractAttach">
+    insert into pub_ad_contract_attach (cont_id, attach_type_id,
+    cont_attach_name, cont_attach_link, cont_attach_declare)
+    values
+    <foreach collection="lists" item="list" separator=",">
+      (#{list.contId,jdbcType=BIGINT}, #{list.attachTypeId,jdbcType=TINYINT},
+      #{list.contAttachName,jdbcType=VARCHAR}, #{list.contAttachLink,jdbcType=VARCHAR}, #{list.contAttachDeclare,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+  <update id="deleteContractAttachByBatch">
+    update pub_ad_contract_attach set del=1 where cont_attach_id IN
+    <foreach collection="contAttachIds" open="(" item="contAttachId" separator="," close=")">
+      #{contAttachId, jdbcType=BIGINT}
+    </foreach>
+  </update>
+
+  <select id="getAttachListByContId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM pub_ad_contract_attach
+    WHERE cont_id=#{contId, jdbcType=BIGINT} and del=0
+  </select>
+</mapper>
